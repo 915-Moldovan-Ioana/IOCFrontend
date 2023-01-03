@@ -5,9 +5,12 @@ import { Routes, Route } from 'react-router-dom';
 import Sidebar from './sidebar/Sidebar';
 import BachelorPage from './sidebar/BachelorPage';
 import InternshipPage from './sidebar/InternshipPage';
+import Context from './login/Context';
+import IdContext from './login/IdContext';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [idLogin, setIdLogin] = useState(2001);
   let routes
 
   if (!isLoggedIn) {
@@ -26,7 +29,18 @@ function App() {
   }
 
   return (
-    routes
+    <React.Fragment >
+      <Context.Provider value={{
+        setIsLoggedIn: setIsLoggedIn
+      }}>
+        <IdContext.Provider value={{
+          idLogin: idLogin,
+          setIdLogin: setIdLogin
+        }}>
+          {routes}
+        </IdContext.Provider>
+      </Context.Provider>
+    </React.Fragment>
   );
 }
 

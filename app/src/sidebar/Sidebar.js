@@ -1,14 +1,29 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import './Sidebar.css';
-import SidebarData from './SidebarData';
+import AdminSidebar from "../admin/AdminSidebar";
 import { IconContext } from 'react-icons';
 import { Link } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
 import { AiOutlineClose } from 'react-icons/ai';
+import IdContext from "../login/IdContext";
+import CoordinatorSidebar from "../coordinator/CoordinatorSidebar";
+import StudentSidebar from "../student/StudentSidebar";
+import SubMenu from "./SubMenu";
 
 function Sidebar() {
     const [sidebar, setSidebar] = useState(false)
     const showSidebar = () => setSidebar(!sidebar)
+    const idctx = useContext(IdContext)
+    let data
+    if (idctx.idLogin === 0) {
+        data = AdminSidebar
+    } else {
+        if (idctx.idLogin < 2000) {
+            data = CoordinatorSidebar
+        } else {
+            data = StudentSidebar
+        }
+    }
 
     return (
         <IconContext.Provider value={{ color: '#fff' }}>
@@ -18,20 +33,15 @@ function Sidebar() {
                 </Link>
             </div>
             <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-                <ul className='nav-menu-items' onClick={showSidebar}>
+                <ul className='nav-menu-items'>
                     <li className='navbar-toggle'>
                         <Link to='#' className='menu-bars'>
-                            <AiOutlineClose />
+                            <AiOutlineClose onClick={showSidebar} />
                         </Link>
                     </li>
-                    {SidebarData.map((item, index) => {
+                    {data.map((item, index) => {
                         return (
-                            <li key={index} className={item.className}>
-                                <Link to={item.path}>
-                                    {item.icon}
-                                    <span>{item.title}</span>
-                                </Link>
-                            </li>
+                            <SubMenu key={index} item={item} />
                         )
                     })}
                 </ul>
