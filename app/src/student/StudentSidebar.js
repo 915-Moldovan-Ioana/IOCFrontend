@@ -18,7 +18,7 @@ const StudentSidebar = [
             },
             {
                 title: 'Chat',
-                path: '/admin/bachelor/chat'
+                path: '/student/bachelor/chat'
             }
         ]
     },
