@@ -7,10 +7,11 @@ import BachelorPage from './sidebar/BachelorPage';
 import InternshipPage from './sidebar/InternshipPage';
 import Context from './login/Context';
 import IdContext from './login/IdContext';
+import RoutesCoordinator from "./coordinator/CoordinatorRoutes";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [idLogin, setIdLogin] = useState(2001);
+  const [idLogin, setIdLogin] = useState(1999);
   let routes
 
   if (!isLoggedIn) {
@@ -25,6 +26,7 @@ function App() {
         <Route path='/bachelor' element={<BachelorPage />} />
         <Route path='/internship' element={<InternshipPage />} />
       </Routes>
+      <RoutesCoordinator/>
     </React.Fragment>
   }
 
