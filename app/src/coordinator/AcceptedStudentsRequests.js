@@ -29,6 +29,7 @@ function AcceptedStudentsRequests() {
                     <tr>
                         <th>Nume</th>
                         <th>Prenume</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
