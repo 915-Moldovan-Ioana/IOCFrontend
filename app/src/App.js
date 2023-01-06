@@ -3,10 +3,11 @@ import Login from './login/Login';
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Sidebar from './sidebar/Sidebar';
-import BachelorPage from './sidebar/BachelorPage';
-import InternshipPage from './sidebar/InternshipPage';
 import Context from './login/Context';
 import IdContext from './login/IdContext';
+import AdminBPostInfo from './admin/AdminBPostInfo';
+import AdminIPostInfo from './admin/AdminIPostInfo';
+import StudentIInfo from './student/StudentIInfo';
 import RoutesCoordinator from "./coordinator/CoordinatorRoutes";
 
 function App() {
@@ -20,11 +21,16 @@ function App() {
         <Route path='/*' element={<Login />} />
       </Routes>
   } else {
+    // trebe create toate paginile si puse la Routes
     routes = <React.Fragment>
       <Sidebar />
       <Routes>
-        <Route path='/bachelor' element={<BachelorPage />} />
-        <Route path='/internship' element={<InternshipPage />} />
+        <Route path='/admin/bachelor/post' element={<AdminBPostInfo />} />
+
+        <Route path='/admin/internship/post' element={<AdminIPostInfo />} />
+
+        <Route path='/student/internship/info' element={<StudentIInfo />} />
+        /student/internship/info
       </Routes>
       <RoutesCoordinator/>
     </React.Fragment>
