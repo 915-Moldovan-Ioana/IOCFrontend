@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import "./acceptedStudents.css";
 
 function AcceptedStudentsRequests() {
     const [students, setAcceptedStudents] = useState(null);
@@ -19,8 +20,8 @@ function AcceptedStudentsRequests() {
             <table>
                 <thead>
                     <tr>
-                        <th>Prenume</th>
                         <th>Nume</th>
+                        <th>Prenume</th>
                     </tr>
                 </thead>
                 <tbody>

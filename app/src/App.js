@@ -32,7 +32,7 @@ function App() {
         <Route path='/student/internship/info' element={<StudentIInfo />} />
         /student/internship/info
       </Routes>
-      <AcceptedStudentsRoutes />
+      <AcceptedStudentsRoutes/>
     </React.Fragment>
   }
 
