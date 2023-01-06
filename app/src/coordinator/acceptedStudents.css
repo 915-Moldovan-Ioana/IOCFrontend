@@ -1,3 +1,8 @@
+.details{
+    margin-top: 24px;
+    margin-left: 380px;
+}
+
 table {
     margin: 0 auto;
     border-collapse: collapse;
@@ -20,4 +25,8 @@ tr:nth-child(even) {
 th {
     background-color: blue;
     color: white;
+}
+
+thead{
+    background-color: blue;
 }
