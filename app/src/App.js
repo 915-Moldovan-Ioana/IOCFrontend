@@ -8,10 +8,11 @@ import IdContext from './login/IdContext';
 import AdminBPostInfo from './admin/AdminBPostInfo';
 import AdminIPostInfo from './admin/AdminIPostInfo';
 import StudentIInfo from './student/StudentIInfo';
+import AcceptedStudentsRoutes from "./coordinator/AcceptedStudentsRoutes";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [idLogin, setIdLogin] = useState(2000);
+  const [idLogin, setIdLogin] = useState(1999);
   let routes
 
   if (!isLoggedIn) {
@@ -31,6 +32,7 @@ function App() {
         <Route path='/student/internship/info' element={<StudentIInfo />} />
         /student/internship/info
       </Routes>
+      <AcceptedStudentsRoutes />
     </React.Fragment>
   }
 
