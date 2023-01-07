@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import "./acceptedStudents.css";
 
-function AcceptedStudentsRequests() {
+function AcceptedStudents() {
     const [students, setAcceptedStudents] = useState(null);
     const [showDetails, showStudentDetails] = useState(false);
     const [studentDetails, setStudentDetails] = useState(null);
@@ -60,4 +60,4 @@ function AcceptedStudentsRequests() {
     );
 }
 
-export default AcceptedStudentsRequests;
+export default AcceptedStudents;

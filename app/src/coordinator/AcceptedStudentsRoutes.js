@@ -1,10 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
-import AcceptedStudentsRequests from './AcceptedStudentsRequests';
+import AcceptedStudents from './AcceptedStudents';
 import React from "react";
 
 const AcceptedStudentsRoutes = () => (
     <Routes>
-        <Route path='/coordinator/bachelor/students' element={<AcceptedStudentsRequests />} />
+        <Route path='/coordinator/bachelor/students' element={<AcceptedStudents />} />
     </Routes>
 );
 
