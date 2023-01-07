@@ -8,6 +8,7 @@ import IdContext from './login/IdContext';
 import AdminBPostInfo from './admin/AdminBPostInfo';
 import AdminIPostInfo from './admin/AdminIPostInfo';
 import StudentIInfo from './student/StudentIInfo';
+import EditInterestsRoutes from './coordinator/EditInterestsRoutes';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -31,6 +32,7 @@ function App() {
         <Route path='/student/internship/info' element={<StudentIInfo />} />
         /student/internship/info
       </Routes>
+      <EditInterestsRoutes/>
     </React.Fragment>
   }
 
