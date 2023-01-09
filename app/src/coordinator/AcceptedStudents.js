@@ -12,34 +12,24 @@ function AcceptedStudents() {
     useEffect(() => {
         axios.get(`http://localhost:8080/coordonator/acceptedStudents/${id}`)
             .then(response => {
-                setStudentsData(response.data);
+                setAcceptedStudents(response.data);
             })
             .catch(error => {
                 console.error(error);
             });
     }, []);
 
-    const setStudentsData = (students) => {
-        students.forEach(student => {
-            student.openModal = false;
-        })
-        setAcceptedStudents(students);
-    }
     const handleButtonClick = student => {
         showStudentDetails(true)
         setStudentDetails(student);
     };
-    const openModalForAssignments = (id) => {
-        let studentsCopy = students;
-        studentsCopy.forEach(student => {
-            if(student.id === id)
-                student.openModal = true;
-        })
-        setAcceptedStudents(studentsCopy);
+    const openModalForAssignments = (student) => {
+        setOpenModal(true);
+        setStudentDetails(student);
     };
 
     return (
-        <div>
+        <div className="main-container">
             <table>
                 <thead>
                     <tr>
@@ -63,12 +53,11 @@ function AcceptedStudents() {
                                             </button>
                                         </td>
                                         <td>
-                                            <button onClick={() => openModalForAssignments(student.id)}>
+                                            <button onClick={() => openModalForAssignments(student)}>
                                                 Posteaza sarcina de lucru
                                             </button>
                                         </td>
                                     </tr>
-                                    <AssignmentsModal id={student.id} open={student.openModal} onClose={() => setOpenModal(false)}/>
                                 </>
                         );
                         })}
@@ -80,6 +69,7 @@ function AcceptedStudents() {
                     Email: {studentDetails.email}
                     </div>
             }
+            {openModal && <AssignmentsModal id={studentDetails.id} open={openModal} onClose={() => setOpenModal(false)}/>}
         </div>
 
     );

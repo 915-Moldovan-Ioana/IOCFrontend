@@ -1,3 +1,7 @@
+.main-container{
+    position: relative;
+    z-index: 1;
+}
 .details{
     margin-top: 24px;
     margin-left: 380px;
@@ -10,6 +14,8 @@ table {
     border: 1px solid #ddd;
     font-size: 18px;
     margin-top: 40px;
+    position: relative;
+    z-index: 2;
 }
 
 th,
