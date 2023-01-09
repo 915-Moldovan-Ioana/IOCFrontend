@@ -7,9 +7,7 @@ function EditInterests() {
     const [coordinatorInterests, setCoordinatorInterests] = useState(null);
     const [oldCoordinatorInterests, setOldCoordinatorInterests] = useState(null);
     const idctx = useContext(IdContext);
-
     const id = idctx.idLogin;
-    console.log(id);
     useEffect(() => {
         axios.get(`http://localhost:8080/coordonator/interese/${id}`)
             .then(response => {
