@@ -1,8 +1,64 @@
-import React from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { Grid, Button, TextField } from '@mui/material';
+import { useNavigate } from "react-router-dom";
 import { CgLogIn } from 'react-icons/cg';
+import Context from './Context';
+import IdContext from './IdContext';
+import axios from "axios";
 
 export default function Login() {
+    const ctx = useContext(Context)
+    const idctx = useContext(IdContext)
+    const [firstName] = useState("");
+    const [lastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [role] = useState("");
+    const [password, setPassword] = useState("")
+    const navigate = useNavigate();
+
+    const login = async (e) => {
+        e.preventDefault();
+        const userModel = { firstName: firstName, lastName: lastName, email: email, role: role, password: password }
+
+        console.log(password)
+        console.log(email)
+        // useEffect(() => {
+        //     axios.get(`http://localhost:8080/users/${email}/${password}`)
+        //         .then(response => {
+        //             if(response.data==null)
+        //                 navigate("/");
+        //             else {
+        //                 ctx.setIsLoggedIn(true);
+        //                 idctx.setIdLogin(response.data.id);
+        //                 idctx.setRole(response.data.role);
+        //                 navigate("/");
+        //             }
+        //         })
+        //         .catch(error => {
+        //             console.error(error);
+        //         });
+        // }, []);
+        try {
+            const response = await fetch(`http://localhost:8080/users/${email}/${password}`, {
+                method: "GET" ,
+                headers: { "Content-Type": "application/json" },
+            });
+            if(response.ok)
+            {const data = await response.json();
+            ctx.setIsLoggedIn(true);
+            idctx.setIdLogin(data.id);
+            idctx.setRole(data.role);
+            navigate("/");}
+            else{
+                navigate("/");
+            }
+        } catch (error) {
+            console.error(error);
+            navigate("/");
+
+        }
+    };
+
     return (
         <div className='login' style={{ padding: 30 }}>
             <Grid
@@ -17,15 +73,24 @@ export default function Login() {
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
+                        value={email}
+                        onChange={(e) => {
+                            setEmail(e.target.value);
+                        }}
                         label="Email" />
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
+                        value={password}
+                        onChange={(e) => {
+                            setPassword(e.target.value);
+                        }}
                         label="Password"
-                        type={'password'} />
+                        type={'password'}
+                        required />
                 </Grid>
                 <Grid item xs={12}>
-                    <Button fullWidth sx={{ color: 'white', backgroundColor: 'black', borderColor: 'black' }}>Login</Button>
+                    <Button onClick={login} fullWidth sx={{ color: 'white', backgroundColor: 'rgba(15, 12, 110, 1)', borderColor: 'rgba(15, 12, 110, 1)' }}>Login</Button>
                 </Grid>
             </Grid>
         </div>

@@ -1,0 +1,28 @@
+p{
+    margin: 0 auto;
+    width: 60%;
+    font-size: 18px;
+    padding: 8px;
+}
+
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 60%;
+    border: 1px solid #ddd;
+    font-size: 18px;
+}
+
+th, td {
+    text-align: left;
+    padding: 16px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+th {
+    background-color: blue;
+    color: white;
+}

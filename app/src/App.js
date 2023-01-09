@@ -10,9 +10,13 @@ import AdminIPostInfo from './admin/AdminIPostInfo';
 import StudentIInfo from './student/StudentIInfo';
 import EditInterestsRoutes from './coordinator/EditInterestsRoutes';
 
+import RoutesCoordinator from "./coordinator/CoordinatorRoutes";
+import Home from './Home';
+
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [idLogin, setIdLogin] = useState(1999);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [idLogin, setIdLogin] = useState(0);
+  const [role, setRole] = useState("")
   let routes
 
   if (!isLoggedIn) {
@@ -25,6 +29,7 @@ function App() {
     routes = <React.Fragment>
       <Sidebar />
       <Routes>
+        <Route path='/' element={<Home />} />
         <Route path='/admin/bachelor/post' element={<AdminBPostInfo />} />
 
         <Route path='/admin/internship/post' element={<AdminIPostInfo />} />
@@ -33,6 +38,7 @@ function App() {
         /student/internship/info
       </Routes>
       <EditInterestsRoutes/>
+      <RoutesCoordinator/>
     </React.Fragment>
   }
 
@@ -43,7 +49,9 @@ function App() {
       }}>
         <IdContext.Provider value={{
           idLogin: idLogin,
-          setIdLogin: setIdLogin
+          setIdLogin: setIdLogin,
+          role: role,
+          setRole: setRole
         }}>
           {routes}
         </IdContext.Provider>
