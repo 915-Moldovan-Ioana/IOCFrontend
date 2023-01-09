@@ -15,10 +15,10 @@ function Sidebar() {
     const showSidebar = () => setSidebar(!sidebar)
     const idctx = useContext(IdContext)
     let data
-    if (idctx.idLogin === 0) {
+    if (idctx.role === "admin") {
         data = AdminSidebar
     } else {
-        if (idctx.idLogin < 2000) {
+        if (idctx.role === "coordonator") {
             data = CoordinatorSidebar
         } else {
             data = StudentSidebar
