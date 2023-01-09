@@ -1,15 +1,29 @@
 import React, {useState} from "react";
 import './AssignmentsModal.css';
+import axios from "axios";
 
-function AssignmentsModal({id,open,onClose}){
+function AssignmentsModal({coordinatorId,studentId,open,onClose}){
     const [task,setTask] = useState({
-        studentId:id,
+        id:{
+            studentId:studentId,
+            teacherId:coordinatorId
+        },
+        deadline:new Date(),
         message:'',
-        deadline:new Date()
     })
     if(!open) return null;
     const sendAssignments = () => {
+        axios.post(`http://localhost:8080/coordonator/assignment`,task,{
+            'headers': {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(() => {
 
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
     return (
         <div className='overlay'>
@@ -20,11 +34,10 @@ function AssignmentsModal({id,open,onClose}){
                     <div className='modal-body'>
                         <label>Termen</label>
                         <br/>
-                        <input type='date' onChange={date => setTask({...task,deadline: date.target.value})}/>
+                        <input type='datetime-local' onChange={date => setTask({...task,deadline: date.target.value})}/>
                         <br/>
                         <label>Descriere</label>
                         <br/>
-                        {/*<input type="text" onChange={message => setTask({...task,message: message.target.value})}/>*/}
                         <textarea onChange={message => setTask({...task,message: message.target.value})}/>
                     </div>
                     <div className='modal-footer'>

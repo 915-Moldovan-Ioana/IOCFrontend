@@ -69,7 +69,7 @@ function AcceptedStudents() {
                     Email: {studentDetails.email}
                     </div>
             }
-            {openModal && <AssignmentsModal id={studentDetails.id} open={openModal} onClose={() => setOpenModal(false)}/>}
+            {openModal && <AssignmentsModal coordinatorId={id} studentId={studentDetails.id} open={openModal} onClose={() => setOpenModal(false)}/>}
         </div>
 
     );
