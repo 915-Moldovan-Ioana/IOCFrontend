@@ -50,25 +50,13 @@ function AcceptedStudents() {
                                 <tr key={student.id} >
                                     <td className="click" onClick={() => handleButtonClick(student)}>{student.firstName}</td>
                                     <td>{student.lastName}</td>
+                                    <td>
+                                        <button onClick={() => openModalForAssignments(student)}>
+                                            Posteaza sarcina de lucru
+                                        </button>
+                                    </td>
                                 </tr>
                             );
-                                <>
-                                    <tr key={student.id}>
-                                        <td>{student.firstName}</td>
-                                        <td>{student.lastName}</td>
-                                        <td>
-                                            <button onClick={() => handleButtonClick(student)}>
-                                                Afisare detalii
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <button onClick={() => openModalForAssignments(student)}>
-                                                Posteaza sarcina de lucru
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </>
-                        );
                         })}
                 </tbody>
             </table>

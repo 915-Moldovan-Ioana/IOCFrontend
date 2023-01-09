@@ -2,9 +2,10 @@
     position: relative;
     z-index: 1;
 }
-.details{
+.details {
     margin-top: 24px;
     margin-left: 380px;
+}
 
 table {
     margin: 0 auto;
