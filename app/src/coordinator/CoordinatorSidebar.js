@@ -1,5 +1,4 @@
 import * as RiIcons from 'react-icons/ri';
-
 const CoordinatorSidebar = [
     {
         title: 'Coordonare lucrare',
