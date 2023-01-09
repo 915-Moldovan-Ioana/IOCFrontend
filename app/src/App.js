@@ -9,8 +9,9 @@ import AdminBPostInfo from './admin/AdminBPostInfo';
 import AdminIPostInfo from './admin/AdminIPostInfo';
 import StudentIInfo from './student/StudentIInfo';
 import RoutesCoordinator from "./coordinator/CoordinatorRoutes";
-import Home from './Home';
 import AcceptedStudentsRoutes from "./coordinator/AcceptedStudentsRoutes";
+import Home from './Home';
+import UploadPracticeDocument from "./coordinator/UploadPracticeDocument";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -35,6 +36,9 @@ function App() {
 
         <Route path='/student/internship/info' element={<StudentIInfo />} />
         /student/internship/info
+
+        /cordonator
+        <Route path='/coordinator/internship/docs' element={<UploadPracticeDocument />} />
       </Routes>
       <RoutesCoordinator/>
       <AcceptedStudentsRoutes/>

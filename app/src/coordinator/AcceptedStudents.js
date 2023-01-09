@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import axios from 'axios';
 import "./acceptedStudents.css";
 import {AssignmentsModal} from "./AssignmentsModal/AssignmentsModal";
+import IdContext from "../login/IdContext";
 
 function AcceptedStudents() {
     const [students, setAcceptedStudents] = useState(null);
     const [showDetails, showStudentDetails] = useState(false);
     const [studentDetails, setStudentDetails] = useState(null);
     const [openModal,setOpenModal] = useState(false);
-    const id = 4;
+    const idctx = useContext(IdContext);
+    const id = idctx.idLogin;
+    console.log(id)
+
     useEffect(() => {
         axios.get(`http://localhost:8080/coordonator/acceptedStudents/${id}`)
             .then(response => {
@@ -43,6 +47,11 @@ function AcceptedStudents() {
                     {students &&
                         students.map(student => {
                             return (
+                                <tr key={student.id} >
+                                    <td className="click" onClick={() => handleButtonClick(student)}>{student.firstName}</td>
+                                    <td>{student.lastName}</td>
+                                </tr>
+                            );
                                 <>
                                     <tr key={student.id}>
                                         <td>{student.firstName}</td>
@@ -65,9 +74,9 @@ function AcceptedStudents() {
             </table>
             {showDetails &&
                 <div className="details">
-                    Informatii despre studentul {studentDetails.firstName}:<br></br>
+                    Informatii suplimentare despre studentul {studentDetails.firstName}:<br></br>
                     Email: {studentDetails.email}
-                    </div>
+                </div>
             }
             {openModal && <AssignmentsModal coordinatorId={id} studentId={studentDetails.id} open={openModal} onClose={() => setOpenModal(false)}/>}
         </div>
