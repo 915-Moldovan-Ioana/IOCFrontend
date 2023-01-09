@@ -29,21 +29,15 @@ function AcceptedStudents() {
                     <tr>
                         <th>Nume</th>
                         <th>Prenume</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {students &&
                         students.map(student => {
                             return (
-                                <tr key={student.id}>
-                                    <td>{student.firstName}</td>
+                                <tr key={student.id} >
+                                    <td className="click" onClick={() => handleButtonClick(student)}>{student.firstName}</td>
                                     <td>{student.lastName}</td>
-                                    <td>
-                                        <button onClick={() => handleButtonClick(student)}>
-                                            Afisare detalii
-                                        </button>
-                                    </td>
                                 </tr>
                             );
                         })}
@@ -51,9 +45,9 @@ function AcceptedStudents() {
             </table>
             {showDetails &&
                 <div className="details">
-                    Informatii despre studentul {studentDetails.firstName}:<br></br>
+                    Informatii suplimentare despre studentul {studentDetails.firstName}:<br></br>
                     Email: {studentDetails.email}
-                    </div>
+                </div>
             }
         </div>
 

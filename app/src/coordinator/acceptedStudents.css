@@ -1,12 +1,13 @@
-.details{
-    margin-top: 24px;
-    margin-left: 380px;
+.details {
+    margin: 0 auto;
+    width: 45%;
+    margin-top: 10px;
 }
 
 table {
     margin: 0 auto;
     border-collapse: collapse;
-    width: 50%;
+    width: 45%;
     border: 1px solid #ddd;
     font-size: 18px;
     margin-top: 40px;
@@ -23,10 +24,10 @@ tr:nth-child(even) {
 }
 
 th {
-    background-color: blue;
+    background-color: rgba(15, 12, 110, 1);
     color: white;
 }
 
-thead{
-    background-color: blue;
+.click:hover {
+    cursor: pointer;
 }
