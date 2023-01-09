@@ -8,6 +8,7 @@ import IdContext from './login/IdContext';
 import AdminBPostInfo from './admin/AdminBPostInfo';
 import AdminIPostInfo from './admin/AdminIPostInfo';
 import StudentIInfo from './student/StudentIInfo';
+import RoutesCoordinator from "./coordinator/CoordinatorRoutes";
 import Home from './Home';
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Route path='/student/internship/info' element={<StudentIInfo />} />
         /student/internship/info
       </Routes>
+      <RoutesCoordinator/>
     </React.Fragment>
   }
 
