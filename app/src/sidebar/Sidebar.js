@@ -18,6 +18,8 @@ function Sidebar() {
     if (idctx.role === "admin") {
         data = AdminSidebar
     } else {
+        console.log("rol:"+idctx.role)
+        console.log("id:"+idctx.id)
         if (idctx.role === "coordonator") {
             data = CoordinatorSidebar
         } else {

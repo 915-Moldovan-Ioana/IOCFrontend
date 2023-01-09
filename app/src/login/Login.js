@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { Grid, Button, TextField } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import { CgLogIn } from 'react-icons/cg';
 import Context from './Context';
 import IdContext from './IdContext';
+import axios from "axios";
 
 export default function Login() {
     const ctx = useContext(Context)
@@ -21,21 +22,40 @@ export default function Login() {
 
         console.log(password)
         console.log(email)
-
-        const response = await fetch(`http://localhost:8080/users/${email}/${password}`, {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(userModel)
-        });
-
-        if (response.ok) {
-            console.log('ok')
-            navigate("/");
+        // useEffect(() => {
+        //     axios.get(`http://localhost:8080/users/${email}/${password}`)
+        //         .then(response => {
+        //             if(response.data==null)
+        //                 navigate("/");
+        //             else {
+        //                 ctx.setIsLoggedIn(true);
+        //                 idctx.setIdLogin(response.data.id);
+        //                 idctx.setRole(response.data.role);
+        //                 navigate("/");
+        //             }
+        //         })
+        //         .catch(error => {
+        //             console.error(error);
+        //         });
+        // }, []);
+        try {
+            const response = await fetch(`http://localhost:8080/users/${email}/${password}`, {
+                method: "GET" ,
+                headers: { "Content-Type": "application/json" },
+            });
+            if(response.ok)
+            {const data = await response.json();
             ctx.setIsLoggedIn(true);
-            console.log(userModel.id);
-            idctx.setIdLogin(userModel.id);
-            idctx.setRole(userModel.role)
-            console.log(idctx.idLogin)
+            idctx.setIdLogin(data.id);
+            idctx.setRole(data.role);
+            navigate("/");}
+            else{
+                navigate("/");
+            }
+        } catch (error) {
+            console.error(error);
+            navigate("/");
+
         }
     };
 

@@ -1,11 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import axios from 'axios';
 import "./acords.css";
+import IdContext from "../login/IdContext";
 function CoordinatorRequests() {
     const [students, setStudents] = useState(null);
     const [acords, setAcords] = useState([]);
     const [locuri,setLocuri]=useState(null);
-    const id = 2;
+    const idctx = useContext(IdContext);
+    const id=idctx.idLogin;
+    console.log(id);
     const ip="http://127.0.0.1:8887/";
     useEffect(() => {
         axios.get(`http://localhost:8080/coordonator/students/${id}`)
