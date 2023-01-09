@@ -11,11 +11,13 @@ import StudentIInfo from './student/StudentIInfo';
 import EditInterestsRoutes from './coordinator/EditInterestsRoutes';
 
 import RoutesCoordinator from "./coordinator/CoordinatorRoutes";
+import AcceptedStudentsRoutes from "./coordinator/AcceptedStudentsRoutes";
 import Home from './Home';
+import UploadPracticeDocument from "./coordinator/UploadPracticeDocument";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [idLogin, setIdLogin] = useState(0);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [idLogin, setIdLogin] = useState(1999);
   const [role, setRole] = useState("")
   let routes
 
@@ -36,9 +38,13 @@ function App() {
 
         <Route path='/student/internship/info' element={<StudentIInfo />} />
         /student/internship/info
+
+        /cordonator
+        <Route path='/coordinator/internship/docs' element={<UploadPracticeDocument />} />
       </Routes>
       <EditInterestsRoutes/>
       <RoutesCoordinator/>
+      <AcceptedStudentsRoutes/>
     </React.Fragment>
   }
 

@@ -1,0 +1,38 @@
+.main-container{
+    position: relative;
+    z-index: 1;
+}
+.details {
+    margin-top: 24px;
+    margin-left: 380px;
+}
+
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 45%;
+    border: 1px solid #ddd;
+    font-size: 18px;
+    margin-top: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 16px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+th {
+    background-color: rgba(15, 12, 110, 1);
+    color: white;
+}
+
+.click:hover {
+    cursor: pointer;
+}
