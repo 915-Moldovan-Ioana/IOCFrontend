@@ -9,6 +9,7 @@ import AdminBPostInfo from './admin/AdminBPostInfo';
 import AdminIPostInfo from './admin/AdminIPostInfo';
 import StudentIInfo from './student/StudentIInfo';
 import RoutesCoordinator from "./coordinator/CoordinatorRoutes";
+import AcceptedStudentsRoutes from "./coordinator/AcceptedStudentsRoutes";
 import Home from './Home';
 import UploadPracticeDocument from "./coordinator/UploadPracticeDocument";
 
@@ -40,6 +41,7 @@ function App() {
         <Route path='/coordinator/internship/docs' element={<UploadPracticeDocument />} />
       </Routes>
       <RoutesCoordinator/>
+      <AcceptedStudentsRoutes/>
     </React.Fragment>
   }
 
