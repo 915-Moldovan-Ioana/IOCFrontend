@@ -14,8 +14,8 @@ import Home from './Home';
 import UploadPracticeDocument from "./coordinator/UploadPracticeDocument";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [idLogin, setIdLogin] = useState(0);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [idLogin, setIdLogin] = useState(1999);
   const [role, setRole] = useState("")
   let routes
 
