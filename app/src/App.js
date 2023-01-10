@@ -8,6 +8,8 @@ import IdContext from './login/IdContext';
 import AdminBPostInfo from './admin/AdminBPostInfo';
 import AdminIPostInfo from './admin/AdminIPostInfo';
 import StudentIInfo from './student/StudentIInfo';
+import EditInterestsRoutes from './coordinator/EditInterestsRoutes';
+
 import RoutesCoordinator from "./coordinator/CoordinatorRoutes";
 import AcceptedStudentsRoutes from "./coordinator/AcceptedStudentsRoutes";
 import Home from './Home';
@@ -40,6 +42,7 @@ function App() {
         /cordonator
         <Route path='/coordinator/internship/docs' element={<UploadPracticeDocument />} />
       </Routes>
+      <EditInterestsRoutes/>
       <RoutesCoordinator/>
       <AcceptedStudentsRoutes/>
     </React.Fragment>
