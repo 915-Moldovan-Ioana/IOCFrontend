@@ -1,3 +1,4 @@
+
 import './App.css';
 import Login from './login/Login';
 import React, { useState } from 'react';
@@ -9,25 +10,29 @@ import AdminBPostInfo from './admin/AdminBPostInfo';
 import AdminIPostInfo from './admin/AdminIPostInfo';
 import StudentIInfo from './student/StudentIInfo';
 import EditInterestsRoutes from './coordinator/EditInterestsRoutes';
-
 import RoutesCoordinator from "./coordinator/CoordinatorRoutes";
 import AcceptedStudentsRoutes from "./coordinator/AcceptedStudentsRoutes";
-import Home from './Home';
+import Home from "./Home";
 import UploadPracticeDocument from "./coordinator/UploadPracticeDocument";
+import Chat from "./student/ChatPage";
+import CLPage from "./student/CLPage";
+import StatusPage from "./student/StatusPage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [idLogin, setIdLogin] = useState(1999);
-  const [role, setRole] = useState("")
-  let routes
+  const [role, setRole] = useState("");
+  let routes;
 
   if (!isLoggedIn) {
-    routes =
+    routes = (
       <Routes>
-        <Route path='/*' element={<Login />} />
+        <Route path="/*" element={<Login />} />
       </Routes>
+    );
   } else {
     // trebe create toate paginile si puse la Routes
+
     routes = <React.Fragment>
       <Sidebar />
       <Routes>
@@ -37,6 +42,9 @@ function App() {
         <Route path='/admin/internship/post' element={<AdminIPostInfo />} />
 
         <Route path='/student/internship/info' element={<StudentIInfo />} />
+          <Route path="/student/bachelor/chat" element={<Chat />} />
+          <Route path="/student/bachelor/coordinators" element={<CLPage />} />
+          <Route path="/student/bachelor/status" element={<StatusPage />} />
         /student/internship/info
 
         /cordonator
@@ -49,16 +57,20 @@ function App() {
   }
 
   return (
-    <React.Fragment >
-      <Context.Provider value={{
-        setIsLoggedIn: setIsLoggedIn
-      }}>
-        <IdContext.Provider value={{
-          idLogin: idLogin,
-          setIdLogin: setIdLogin,
-          role: role,
-          setRole: setRole
-        }}>
+    <React.Fragment>
+      <Context.Provider
+        value={{
+          setIsLoggedIn: setIsLoggedIn,
+        }}
+      >
+        <IdContext.Provider
+          value={{
+            idLogin: idLogin,
+            setIdLogin: setIdLogin,
+            role: role,
+            setRole: setRole,
+          }}
+        >
           {routes}
         </IdContext.Provider>
       </Context.Provider>
