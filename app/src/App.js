@@ -62,7 +62,7 @@ function App() {
       <EditInterestsRoutes />
       <RoutesCoordinator />
       <AcceptedStudentsRoutes />
-        <GestionAssignmentsRoutes/>
+      <GestionAssignmentsRoutes/>
     </React.Fragment>
   }
 
