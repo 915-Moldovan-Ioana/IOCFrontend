@@ -35,8 +35,8 @@ const AdminSidebar = [
         path: "/admin/bachelor/acc_bachelor",
       },
       {
-        title: "Acorduri de studenti",
-        path: "/admin/bachelor/acc_students",
+        title: "Alocare studenti",
+        path: "/admin/bachelor/aloc_students",
       },
     ],
   },
