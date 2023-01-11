@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
 import { TableContainer } from "@mui/material";
 import Sidebar from "../sidebar/Sidebar";
 import axios from "axios";
@@ -50,6 +53,25 @@ function CLPage() {
       numarLocuri: "ajd",
     },
   ]);
+  const ref = useRef();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const handleClick = (e) => {
+      e.preventDefault()
+      // TODO: fetch
+      handleClose();
+  };
+  const modalStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    p: 4,
+  };
 
   return (
     <>
@@ -83,9 +105,9 @@ function CLPage() {
                 <TableCell align="center" sx={{ color: "white" }}>
                   <b>Nr locuri libere/ Total nr locuri</b>
                 </TableCell>
-                {/* <TableCell align="left" sx={{ color: "white" }}>
-                  <b> </b>
-                </TableCell> */}
+                <TableCell align="center" sx={{ color: "white" }}>
+                  <b>Trimite cerere</b>
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -94,6 +116,7 @@ function CLPage() {
                   key={row.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
+
                   <TableCell align="center">{row.user.firstName}</TableCell>
                   <TableCell align="center">{row.user.lastName}</TableCell>
                   <TableCell align="center">{row.grad}</TableCell>
@@ -102,6 +125,22 @@ function CLPage() {
                   <TableCell align="center">
                     {row.locuri - row.locuriLibere}/{row.locuri}
                   </TableCell>
+                  <TableCell align="center"><Button variant="contained"  onClick={handleOpen} className=".MuiButton-sizeLarge" size="large" sx={{ color: "blue", backgroundColor : "white", fontSize: "x-large", fontWeight: "900"}}>+</Button></TableCell>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                  >
+                    <Box
+                    component="form"
+                    sx={modalStyle}
+                    noValidate
+                    autoComplete="off"
+                    justifyContent="flex-end"
+                    >
+                    <input ref={ref} style={{width: "350px"}} type="file" />
+                    <Button variant="contained" color="inherit" sx={{ marginLeft: 20, color: 'white', backgroundColor: 'rgba(15, 12, 110, 1)', borderColor: 'rgba(15, 12, 110, 1)' }} onClick={handleClick}>Trimite</Button>
+                      </Box>
+                  </Modal>
                 </TableRow>
               ))}
             </TableBody>
