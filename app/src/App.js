@@ -14,7 +14,7 @@ import RoutesCoordinator from "./coordinator/CoordinatorRoutes";
 import AcceptedStudentsRoutes from "./coordinator/AcceptedStudentsRoutes";
 import Home from "./Home";
 import UploadPracticeDocument from "./coordinator/UploadPracticeDocument";
-import Chat from "./student/ChatPage";
+import Chat from "./student/chat/ChatPage";
 import CLPage from "./student/CLPage";
 import StatusPage from "./student/StatusPage";
 import GestionAssignmentsRoutes from "./coordinator/GestionAssignmentsRoutes";

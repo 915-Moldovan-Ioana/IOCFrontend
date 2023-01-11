@@ -1,0 +1,12 @@
+#chat-container{
+    margin-top: 3rem;
+}
+
+#chat-window {
+    height: 20rem;
+}
+
+#chat-window-messages {
+    height: 18rem;
+    overflow: auto;
+}
