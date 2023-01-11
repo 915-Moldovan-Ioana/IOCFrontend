@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -25,22 +25,47 @@ function AdminIPostInfo() {
     };
 
     const i = 2
-    const [news, setNews] = useState([
-        { id: 1, date: "12.12.2022", info: "lalalala" },
-        { id: 2, date: "24.12.2022", info: "blablabla" }
-    ]);
-    const [info, setInfo] = useState('');
-    const [date, setDate] = useState('');
+
+    const [news, setNews] = React.useState('');
+    const [message, setMessage] = useState('');
+    const [created, setCreated] = useState('');
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    useEffect(() => {
+        fetch(`http://localhost:8080/admins/announcements?type=stagiu`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            }
+        })
+            .then(res => res.json())
+            .then(result => setNews(result))
+            .catch(err => console.log(err))
+    }, []);
+
     const handleClick = (e) => {
         e.preventDefault()
-        // fetch
-        const newInfo = { id: i + 1, info: info, date: date }
+        const newInfo = { message: message, created: created }
         console.log(newInfo)
-        handleClose()
+        fetch("http://localhost:8080/admins/announcements/stagiu", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            },
+            body: JSON.stringify(newInfo)
+        }).then(() => {
+            setNews((prevState) => {
+                const newState = [...prevState]
+                newState.push(newInfo)
+                return newState
+            })
+            console.log("New info added")
+            handleClose()
+        })
     }
 
     return (
@@ -49,9 +74,9 @@ function AdminIPostInfo() {
             <TableContainer sx={{ height: 600 }}><Table sx={{ minWidth: 650, maxHeight: "max-content" }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell><b>Data</b></TableCell>
-                        <TableCell align="left"><b>Informatie</b></TableCell>
-                        <TableCell align="left"><b> </b></TableCell>
+                        <TableCell sx={{ color: 'white' }}><b>Data</b></TableCell>
+                        <TableCell sx={{ color: 'white' }} align="left"><b>Informatie</b></TableCell>
+                        <TableCell sx={{ color: 'white' }} align="left"><b> </b></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -61,8 +86,8 @@ function AdminIPostInfo() {
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 
                         >
-                            <TableCell align="left">{row.date}</TableCell>
-                            <TableCell align="left">{row.info}</TableCell>
+                            <TableCell align="left">{row.created}</TableCell>
+                            <TableCell align="left">{row.message}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
@@ -83,12 +108,8 @@ function AdminIPostInfo() {
                 >
                     <h1 style={{ color: "black", }}>Posteaza o informatie noua</h1>
                     <TextField id="outlined-basic" label="Informatie" variant="outlined" fullWidth margin="normal"
-                        value={info}
-                        onChange={(e) => setInfo(e.target.value)}
-                    />
-                    <TextField id="outlined-basic" label="Data" variant="outlined" fullWidth margin="normal"
-                        value={date}
-                        onChange={(e) => setDate(e.target.value)}
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
                     />
                     <Button variant="contained" color="inherit" sx={{ color: 'white', backgroundColor: 'rgba(15, 12, 110, 1)', borderColor: 'rgba(15, 12, 110, 1)' }} onClick={handleClick}>Posteaza</Button>
                 </Box>

@@ -1,6 +1,6 @@
-import React, {ChangeEvent, useContext, useState} from 'react'
+import React, { ChangeEvent, useContext, useState } from 'react'
 import IdContext from "../login/IdContext";
-import {Button} from "@mui/material";
+import { Button } from "@mui/material";
 import "./practicedocuments.css"
 
 function UploadPracticeDocument() {
@@ -48,7 +48,8 @@ function UploadPracticeDocument() {
     return (
         <div className="div-1">
             <div className="col-sm-6 offset-sm-3">
-                <input type="file" onChange={handleFileChange} multiple/>
+                <input type="file" className="form-control" onChange={handleFileChange} multiple />
+
                 <ul>
                     {files.map((file, i) => (
                         <li key={i}>

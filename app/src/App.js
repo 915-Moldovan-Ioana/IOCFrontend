@@ -1,3 +1,4 @@
+
 import './App.css';
 import Login from './login/Login';
 import React, { useState } from 'react';
@@ -17,6 +18,10 @@ import Chat from "./student/ChatPage";
 import CLPage from "./student/CLPage";
 import StatusPage from "./student/StatusPage";
 import GestionAssignmentsRoutes from "./coordinator/GestionAssignmentsRoutes";
+import SituatieStudenti from './admin/SituatieStudenti';
+import SituatieStudentiStagiu from './admin/SituatieStudentiStagiu';
+import SituatieCoordonatori from './admin/SituatieCoordonatori';
+import AlocareStudenti from './admin/AlocareStudenti';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -38,22 +43,26 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/admin/bachelor/post' element={<AdminBPostInfo />} />
+        <Route path='/admin/bachelor/student_situation' element={<SituatieStudenti />} />
+        <Route path='/admin/bachelor/coordinator_situation' element={<SituatieCoordonatori />} />
+        <Route path='/admin/bachelor/aloc_students' element={<AlocareStudenti />} />
 
         <Route path='/admin/internship/post' element={<AdminIPostInfo />} />
+        <Route path='/admin/internship/situation' element={<SituatieStudentiStagiu />} />
 
         <Route path='/student/internship/info' element={<StudentIInfo />} />
-          <Route path="/student/bachelor/chat" element={<Chat />} />
-          <Route path="/student/bachelor/coordinators" element={<CLPage />} />
-          <Route path="/student/bachelor/status" element={<StatusPage />} />
+        <Route path="/student/bachelor/chat" element={<Chat />} />
+        <Route path="/student/bachelor/coordinators" element={<CLPage />} />
+        <Route path="/student/bachelor/status" element={<StatusPage />} />
         /student/internship/info
 
         /cordonator
         <Route path='/coordinator/internship/docs' element={<UploadPracticeDocument />} />
       </Routes>
-      <RoutesCoordinator/>
-      <AcceptedStudentsRoutes/>
-      <EditInterestsRoutes/>
-      <GestionAssignmentsRoutes/>
+      <EditInterestsRoutes />
+      <RoutesCoordinator />
+      <AcceptedStudentsRoutes />
+        <GestionAssignmentsRoutes/>
     </React.Fragment>
   }
 
