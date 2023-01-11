@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useContext, useState} from 'react'
 import IdContext from "../login/IdContext";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
+
 
 function UploadPracticeDocument() {
     const [fileList, setFileList] = useState();

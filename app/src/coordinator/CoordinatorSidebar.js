@@ -24,18 +24,6 @@ const CoordinatorSidebar = [
         title: "Chat",
         path: "/coordinator/bachelor/chat",
       },
-      {
-        title: "Acord sustinere si prezentare a lucrarii de licenta",
-        path: "/coordinator/bachelor/hand_in",
-      },
-      {
-        title: "Contacteaza admin",
-        path: "/coordinator/bachelor/contact_admin",
-      },
-      {
-        title: "Trimitere solicitare de coordonare",
-        path: "/coordinator/bachelor/send_requests",
-      },
     ],
   },
   {
@@ -64,10 +52,6 @@ const CoordinatorSidebar = [
       {
         title: "Chat",
         path: "/coordinator/internship/chat",
-      },
-      {
-        title: "Contacteaza admin",
-        path: "/coordinator/internship/contact_admin",
       },
     ],
   },
