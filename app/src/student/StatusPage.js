@@ -15,7 +15,6 @@ function StatusPage() {
     <>
       <Paper elevation={3} style={paperStyle}>
         <h1 align="center" style={{ color: "black" }}>
-          {" "}
           Status cerere
         </h1>
       </Paper>
