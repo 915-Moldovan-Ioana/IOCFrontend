@@ -16,6 +16,7 @@ import UploadPracticeDocument from "./coordinator/UploadPracticeDocument";
 import Chat from "./student/ChatPage";
 import CLPage from "./student/CLPage";
 import StatusPage from "./student/StatusPage";
+import GestionAssignmentsRoutes from "./coordinator/GestionAssignmentsRoutes";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -51,6 +52,8 @@ function App() {
       </Routes>
       <RoutesCoordinator/>
       <AcceptedStudentsRoutes/>
+      <EditInterestsRoutes/>
+      <GestionAssignmentsRoutes/>
     </React.Fragment>
   }
 

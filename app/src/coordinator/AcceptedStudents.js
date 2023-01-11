@@ -33,8 +33,6 @@ function AcceptedStudents() {
                     <tr>
                         <th>Nume</th>
                         <th>Prenume</th>
-                        <th></th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
