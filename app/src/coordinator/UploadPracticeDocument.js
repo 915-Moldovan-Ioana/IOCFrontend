@@ -1,5 +1,7 @@
 import React, {ChangeEvent, useContext, useState} from 'react'
 import IdContext from "../login/IdContext";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
 
 function UploadPracticeDocument() {
     const [fileList, setFileList] = useState();
@@ -44,18 +46,20 @@ function UploadPracticeDocument() {
     const files = fileList ? [...fileList] : [];
 
     return (
-        <div>
-            <input type="file" onChange={handleFileChange} multiple/>
+        <div className="div-1">
+            <div className="col-sm-6 offset-sm-3">
+                <input type="file" className="form-control" onChange={handleFileChange} multiple/>
 
-            <ul>
-                {files.map((file, i) => (
-                    <li key={i}>
-                        {file.name}
-                    </li>
-                ))}
-            </ul>
+                <ul>
+                    {files.map((file, i) => (
+                        <li key={i}>
+                            {file.name}
+                        </li>
+                    ))}
+                </ul>
 
-            <button onClick={handleUploadClick}>Upload</button>
+                <Button onClick={handleUploadClick} className="btn-primary">Upload</Button>
+            </div>
         </div>
     );
 }
