@@ -1,0 +1,41 @@
+.infos{
+    margin-left: 500px;
+    margin-right: 250px;
+    margin-top: 20px;
+    width: 40%;
+    height: 40%;
+
+}
+
+.editTextarea{
+    width: 98%;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+  }
+  
+  .card-header {
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .card-header h3 {
+    margin: 0;
+    font-size: 20px;
+  }
+  
+  .card-header p {
+    margin: 0;
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
