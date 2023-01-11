@@ -4,10 +4,8 @@ import axios from "axios";
 
 function AssignmentsModal({coordinatorId,studentId,open,onClose}){
     const [task,setTask] = useState({
-        id:{
-            studentId:studentId,
-            teacherId:coordinatorId
-        },
+        studentId:studentId,
+        teacherId:coordinatorId,
         deadline:new Date(),
         message:'',
     })
