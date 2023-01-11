@@ -49,7 +49,6 @@ function UploadPracticeDocument() {
         <div className="div-1">
             <div className="col-sm-6 offset-sm-3">
                 <input type="file" onChange={handleFileChange} multiple/>
-
                 <ul>
                     {files.map((file, i) => (
                         <li key={i}>
@@ -57,7 +56,6 @@ function UploadPracticeDocument() {
                         </li>
                     ))}
                 </ul>
-
                 <Button onClick={handleUploadClick} sx={{ color: 'white', backgroundColor: 'rgba(15, 12, 110, 1)', borderColor: 'rgba(15, 12, 110, 1)' }}>Upload</Button>
             </div>
         </div>
