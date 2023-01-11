@@ -1,14 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react';
 import axios from 'axios';
 import "./acceptedStudents.css";
-import {AssignmentsModal} from "./AssignmentsModal/AssignmentsModal";
 import IdContext from "../login/IdContext";
 
 function AcceptedStudents() {
     const [students, setAcceptedStudents] = useState(null);
     const [showDetails, showStudentDetails] = useState(false);
     const [studentDetails, setStudentDetails] = useState(null);
-    const [openModal,setOpenModal] = useState(false);
     const idctx = useContext(IdContext);
     const id = idctx.idLogin;
     console.log(id)
@@ -27,10 +25,6 @@ function AcceptedStudents() {
         showStudentDetails(true)
         setStudentDetails(student);
     };
-    const openModalForAssignments = (student) => {
-        setOpenModal(true);
-        setStudentDetails(student);
-    };
 
     return (
         <div className="main-container">
@@ -39,8 +33,6 @@ function AcceptedStudents() {
                     <tr>
                         <th>Nume</th>
                         <th>Prenume</th>
-                        <th></th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,11 +42,6 @@ function AcceptedStudents() {
                                 <tr key={student.id} >
                                     <td className="click" onClick={() => handleButtonClick(student)}>{student.firstName}</td>
                                     <td>{student.lastName}</td>
-                                    <td>
-                                        <button onClick={() => openModalForAssignments(student)}>
-                                            Posteaza sarcina de lucru
-                                        </button>
-                                    </td>
                                 </tr>
                             );
                         })}
@@ -66,7 +53,6 @@ function AcceptedStudents() {
                     Email: {studentDetails.email}
                 </div>
             }
-            {openModal && <AssignmentsModal coordinatorId={id} studentId={studentDetails.id} open={openModal} onClose={() => setOpenModal(false)}/>}
         </div>
 
     );

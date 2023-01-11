@@ -17,6 +17,7 @@ import UploadPracticeDocument from "./coordinator/UploadPracticeDocument";
 import Chat from "./student/ChatPage";
 import CLPage from "./student/CLPage";
 import StatusPage from "./student/StatusPage";
+import GestionAssignmentsRoutes from "./coordinator/GestionAssignmentsRoutes";
 import SituatieStudenti from './admin/SituatieStudenti';
 import SituatieStudentiStagiu from './admin/SituatieStudentiStagiu';
 import SituatieCoordonatori from './admin/SituatieCoordonatori';
@@ -61,6 +62,7 @@ function App() {
       <EditInterestsRoutes />
       <RoutesCoordinator />
       <AcceptedStudentsRoutes />
+      <GestionAssignmentsRoutes/>
     </React.Fragment>
   }
 

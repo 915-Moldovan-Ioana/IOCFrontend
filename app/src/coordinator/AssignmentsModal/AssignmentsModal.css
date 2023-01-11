@@ -29,6 +29,7 @@
     height: 100%;
 }
 .close-button{
+    cursor: pointer;
     width: 20px;
     height: 20px;
     position: fixed;
@@ -52,15 +53,25 @@
     width: 100%;
     height: 100px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 .post-assignment{
+    cursor: pointer;
     width: 200px;
     height: 40px;
+    font-size: 18px;
     border-radius: 10px;
     background-color: rgba(15,12,110,1);
     color: white;
+}
+.info-message{
+    font-size: 18px;
+    font-weight: 700;
+    color: red;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 label{
     font-size: 25px;
