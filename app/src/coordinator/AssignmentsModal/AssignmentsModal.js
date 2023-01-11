@@ -11,6 +11,7 @@ function AssignmentsModal({coordinatorId,studentId,open,onClose}){
         deadline:new Date(),
         message:'',
     })
+    const [confirmationMessage,setConfirmationMessage] = useState("");
     if(!open) return null;
     const sendAssignments = () => {
         axios.post(`http://localhost:8080/coordonator/assignment`,task,{
@@ -19,10 +20,11 @@ function AssignmentsModal({coordinatorId,studentId,open,onClose}){
             }
         })
             .then(() => {
-
+                setConfirmationMessage("Sarcina de lucru asignata cu succes!");
             })
             .catch(error => {
                 console.log(error);
+                setConfirmationMessage(error);
             });
     }
     return (
@@ -42,6 +44,7 @@ function AssignmentsModal({coordinatorId,studentId,open,onClose}){
                     </div>
                     <div className='modal-footer'>
                         <button className='post-assignment' onClick={() => sendAssignments()}>Trimite</button>
+                        <div className='info-message'>{confirmationMessage}</div>
                     </div>
                 </div>
             </div>

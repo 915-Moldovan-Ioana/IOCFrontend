@@ -12,6 +12,7 @@ import RoutesCoordinator from "./coordinator/CoordinatorRoutes";
 import AcceptedStudentsRoutes from "./coordinator/AcceptedStudentsRoutes";
 import Home from './Home';
 import UploadPracticeDocument from "./coordinator/UploadPracticeDocument";
+import GestionAssignmentsRoutes from "./coordinator/GestionAssignmentsRoutes";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -42,6 +43,7 @@ function App() {
       </Routes>
       <RoutesCoordinator/>
       <AcceptedStudentsRoutes/>
+      <GestionAssignmentsRoutes/>
     </React.Fragment>
   }
 
