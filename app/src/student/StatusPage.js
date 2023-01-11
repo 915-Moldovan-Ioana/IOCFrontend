@@ -18,6 +18,43 @@ function StatusPage() {
           {" "}
           Status cerere
         </h1>
+        <TableContainer sx={{ height: 600 }}>
+          <Table
+            sx={{ minWidth: 650, maxHeight: "max-content" }}
+            aria-label="simple table"
+          >
+            <TableHead>
+              <TableRow>
+                <TableCell align="center" sx={{ color: "white" }}>
+                  <b>Nume profesor</b>
+                </TableCell>
+                <TableCell align="center" sx={{ color: "white" }}>
+                  <b>Status</b>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell align="center">Razvan Doica</TableCell>
+                <TableCell align="center" sx={{color: "red"}}>REJECTED</TableCell>
+              </TableRow>
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell align="center">Alex Gajia</TableCell>
+                <TableCell align="center" sx={{color: "green"}}>APPROVED</TableCell>
+              </TableRow>
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell align="center">Daniel Dragoi</TableCell>
+                <TableCell align="center" sx={{color: "red"}}>REJECTED</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Paper>
     </>
   );
