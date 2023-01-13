@@ -21,7 +21,7 @@ const CoordinatorSidebar = [
         path: "/coordinator/bachelor/students",
       },
       {
-        title: "Chat",
+        title: "Chat-WIP",
         path: "/coordinator/bachelor/chat",
       },
     ],
@@ -34,7 +34,7 @@ const CoordinatorSidebar = [
     iconOpened: <RiIcons.RiArrowUpFill />,
     subNav: [
       {
-        title: "Vizualizare informatii",
+        title: "Vizualizare informatii-WIP",
         path: "/coordinator/internship/info",
       },
       {
@@ -50,7 +50,7 @@ const CoordinatorSidebar = [
         path: "/coordinator/internship/evaluation",
       },
       {
-        title: "Chat",
+        title: "Chat-WIP",
         path: "/coordinator/internship/chat",
       },
     ],

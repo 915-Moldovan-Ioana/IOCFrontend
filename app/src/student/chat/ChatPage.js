@@ -7,15 +7,12 @@ import SendIcon from "@mui/icons-material/Send"
 
 const Chat = () => {
   const [chatMessages, setChatMessages] = useState([
-    {user: "Alex", message: "hi"},
-    {user: "Bill Gates", message: "i am bill gates"},
-    {user: "Alex", message: "react is bad"},
-    {user: "Bill Gates", message: "true, vue better."},
-    {user: "Alex", message: "you're a smart one."},
-    {user: "Bill Gates", message: "unlike you, who has no Windows™ license"},
-    {user: "Alex", message: "shut up, I'm broke"},
-    {user: "Bill Gates", message: "lies"},
-    {user: "Alex", message: "truths."}
+    {user: "Alex", message: "salut, am nevoie de ajutor"},
+    {user: "Razvan Invatatul", message: "Ce problema ai?"},
+    {user: "Alex", message: "Nu mi mai merge codul"},
+    {user: "Razvan Invatatul", message: "Hai ca ne uitam maine peste el"},
+    {user: "Alex", message: "Multumesc, o zi frumoasa!"},
+    {user: "Razvan Invatatul", message: "La revedere!"},
   ])
 
 const [message, setMessage] = useState("");
@@ -35,7 +32,7 @@ const [message, setMessage] = useState("");
         <Paper elevation={5}>
           <Box p={3} id="chat-container">
             <Typography variant="h4" gutterBottom>
-              Best chat in the world
+              Chat cu coordonatorul:
             </Typography>
             <Divider />
             <Grid container spacing={4} alignItems="center">

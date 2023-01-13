@@ -26,9 +26,9 @@ function AlocareStudenti() {
     };
 
     const [coords, setCoords] = useState([
-        { id: 1, name: 'Coordonator1' },
-        { id: 2, name: 'Coordonator2' },
-        { id: 3, name: 'Coordonator3' }
+        { id: 1, name: 'Profesorul X' },
+        { id: 2, name: 'Razvan Invatatul' },
+        { id: 3, name: 'Profesorul Prof' }
     ])
 
     const [news, setNews] = useState([

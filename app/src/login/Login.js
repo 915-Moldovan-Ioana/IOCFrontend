@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { CgLogIn } from "react-icons/cg";
 import Context from "./Context";
 import IdContext from "./IdContext";
+import "../index.css"
 import axios from "axios";
 
 export default function Login() {
@@ -114,6 +115,8 @@ export default function Login() {
           </Button>
         </Grid>
       </Grid>
+      <img className="center2"
+           src="https://upload.wikimedia.org/wikipedia/ro/thumb/b/ba/Logo_Universitatea_Babe%C8%99-Bolyai.svg/1280px-Logo_Universitatea_Babe%C8%99-Bolyai.svg.png" alt={"poza ubb"}/>
     </div>
   );
 }

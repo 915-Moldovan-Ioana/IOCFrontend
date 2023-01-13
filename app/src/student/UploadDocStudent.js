@@ -3,7 +3,7 @@ import IdContext from "../login/IdContext";
 import { Button } from "@mui/material";
 import "./practicedocuments.css"
 
-function UploadPracticeDocument() {
+function UploadDocStudent() {
     const [fileList, setFileList] = useState();
     const idctx = useContext(IdContext);
     const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -48,8 +48,8 @@ function UploadPracticeDocument() {
     return (
         <div className="div-1">
             <div className="col-sm-6 offset-sm-3">
-                <h1>Incarca document:</h1>
                 <input type="file" className="form-control" onChange={handleFileChange} multiple />
+
                 <ul>
                     {files.map((file, i) => (
                         <li key={i}>
@@ -63,4 +63,4 @@ function UploadPracticeDocument() {
     );
 }
 
-export default UploadPracticeDocument;
+export default UploadDocStudent;

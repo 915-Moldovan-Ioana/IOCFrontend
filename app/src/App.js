@@ -22,6 +22,8 @@ import SituatieStudenti from './admin/SituatieStudenti';
 import SituatieStudentiStagiu from './admin/SituatieStudentiStagiu';
 import SituatieCoordonatori from './admin/SituatieCoordonatori';
 import AlocareStudenti from './admin/AlocareStudenti';
+import Coordonare from "./coordinator/Coordonare";
+import Note from "./student/Note";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -46,14 +48,18 @@ function App() {
         <Route path='/admin/bachelor/student_situation' element={<SituatieStudenti />} />
         <Route path='/admin/bachelor/coordinator_situation' element={<SituatieCoordonatori />} />
         <Route path='/admin/bachelor/aloc_students' element={<AlocareStudenti />} />
-
+        <Route path='/student/internship/doc' element={<UploadPracticeDocument />} />
         <Route path='/admin/internship/post' element={<AdminIPostInfo />} />
         <Route path='/admin/internship/situation' element={<SituatieStudentiStagiu />} />
-
+        <Route path='/admin/internship' element={<Coordonare/>} />
+        <Route path='/admin/bachelor' element={<Coordonare/>} />
         <Route path='/student/internship/info' element={<StudentIInfo />} />
         <Route path="/student/bachelor/chat" element={<Chat />} />
         <Route path="/student/bachelor/coordinators" element={<CLPage />} />
         <Route path="/student/bachelor/status" element={<StatusPage />} />
+        <Route path='/student/internship' element={<Coordonare/>} />
+        <Route path='/student/bachelor' element={<Coordonare/>} />
+        <Route path='/student/internship/evaluation' element={<Note/>} />
         /student/internship/info
 
         /cordonator
