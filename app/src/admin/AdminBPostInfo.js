@@ -10,6 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Modal from '@mui/material/Modal';
 import { TableContainer } from '@mui/material';
+import Moment from 'moment';
 
 function AdminBPostInfo() {
 
@@ -94,7 +95,7 @@ function AdminBPostInfo() {
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 
                         >
-                            <TableCell align="left">{row.created ? row.created : 'now'}</TableCell>
+                            <TableCell align="left">{Moment(row.created).format('MM/DD/YYYY') ? Moment(row.created).format('MM/DD/YYYY') : 'now'}</TableCell>
                             <TableCell align="left">{row.message}</TableCell>
                         </TableRow>
                     ))}
