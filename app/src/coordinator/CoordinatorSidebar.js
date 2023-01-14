@@ -38,7 +38,7 @@ const CoordinatorSidebar = [
         path: "/coordinator/internship/info",
       },
       {
-        title: "Incarca documente",
+        title: "Descarcare rezolvare teme",
         path: "/coordinator/internship/docs",
       },
       {

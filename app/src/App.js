@@ -25,6 +25,7 @@ import AlocareStudenti from './admin/AlocareStudenti';
 import Coordonare from "./coordinator/Coordonare";
 import Note from "./student/Note";
 import {AdminSendEmail} from "./admin/AdminSendEmail";
+import TasksCompleted from "./coordinator/TasksCompleted";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -65,7 +66,7 @@ function App() {
         /student/internship/info
 
         /cordonator
-        <Route path='/coordinator/internship/docs' element={<UploadPracticeDocument />} />
+        <Route path='/coordinator/internship/docs' element={<TasksCompleted />} />
       </Routes>
       <EditInterestsRoutes />
       <RoutesCoordinator />
