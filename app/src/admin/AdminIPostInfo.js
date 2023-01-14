@@ -10,6 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Modal from '@mui/material/Modal';
 import { TableContainer } from '@mui/material';
+import Moment, { now } from 'moment';
 
 function AdminIPostInfo() {
     const paperStyle = { padding: '50px 20px', margin: "20px 250px auto" }
@@ -85,7 +86,6 @@ function AdminIPostInfo() {
                     <TableRow>
                         <TableCell sx={{ color: 'white' }}><b>Data</b></TableCell>
                         <TableCell sx={{ color: 'white' }} align="left"><b>Informatie</b></TableCell>
-                        <TableCell sx={{ color: 'white' }} align="left"><b> </b></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -95,7 +95,7 @@ function AdminIPostInfo() {
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 
                         >
-                            <TableCell align="left">{row.created ? row.created : 'now'}</TableCell>
+                            <TableCell align="left">{Moment(row.created).format('MM/DD/YYYY') ? Moment(row.created).format('MM/DD/YYYY') : 'now'}</TableCell>
                             <TableCell align="left">{row.message}</TableCell>
                         </TableRow>
                     ))}
