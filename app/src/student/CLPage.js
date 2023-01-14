@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -9,10 +9,14 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import { TableContainer } from "@mui/material";
+import IdContext from "../login/IdContext";
 import Sidebar from "../sidebar/Sidebar";
 import axios from "axios";
 function CLPage() {
   const paperStyle = { padding: "50px 20px", margin: "20px auto" };
+  const [modalTeacherId,setTeacherId] = useState(0)
+  const idctx = useContext(IdContext);
+  const id = idctx.idLogin;
   async function getTeachers() {
     const response = await axios.get(`http://localhost:8080/coordonator`);
     const responseData = await response.data;
@@ -55,11 +59,23 @@ function CLPage() {
   ]);
   const ref = useRef();
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = (id) => {
+    setOpen(true)
+    setTeacherId(id)
+  }
   const handleClose = () => setOpen(false);
   const handleClick = (e) => {
       e.preventDefault()
-      // TODO: fetch
+
+      axios.post('http://localhost:8080/student/request', { id:{studentId: id,teacherId: modalTeacherId },documentUrl: ref.current.value})
+            .then(() => {
+
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+      window.alert('File uploaded!')
       handleClose();
   };
   const modalStyle = {
@@ -103,7 +119,7 @@ function CLPage() {
                   <b>Adresa de email</b>
                 </TableCell>
                 <TableCell align="center" sx={{ color: "white" }}>
-                  <b>Nr locuri libere/ Total nr locuri</b>
+                  <b>Nr locuri ocupate/ Total nr locuri</b>
                 </TableCell>
                 <TableCell align="center" sx={{ color: "white" }}>
                   <b>Trimite cerere</b>
@@ -125,7 +141,7 @@ function CLPage() {
                   <TableCell align="center">
                     {row.locuri - row.locuriLibere}/{row.locuri}
                   </TableCell>
-                  <TableCell align="center"><Button variant="contained"  onClick={handleOpen} className=".MuiButton-sizeLarge" size="large" sx={{ color: "blue", backgroundColor : "white", fontSize: "x-large", fontWeight: "900"}}>+</Button></TableCell>
+                  <TableCell align="center"><Button variant="contained"  onClick={()=>handleOpen(row.user.id)} className=".MuiButton-sizeLarge" size="large" sx={{ color: "blue", backgroundColor : "white", fontSize: "x-large", fontWeight: "900"}}>+</Button></TableCell>
                   <Modal
                     open={open}
                     onClose={handleClose}
