@@ -85,7 +85,6 @@ function AdminIPostInfo() {
                     <TableRow>
                         <TableCell sx={{ color: 'white' }}><b>Data</b></TableCell>
                         <TableCell sx={{ color: 'white' }} align="left"><b>Informatie</b></TableCell>
-                        <TableCell sx={{ color: 'white' }} align="left"><b> </b></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

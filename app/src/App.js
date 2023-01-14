@@ -26,6 +26,7 @@ import Coordonare from "./coordinator/Coordonare";
 import Note from "./student/Note";
 import {AdminSendEmail} from "./admin/AdminSendEmail";
 import TasksCompleted from "./coordinator/TasksCompleted";
+import AdminGrades from './admin/AdminGrades';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -47,6 +48,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/admin/bachelor/post' element={<AdminBPostInfo />} />
+        <Route path='/admin/internship/grades' element={<AdminGrades />} />
         <Route path='/admin/bachelor/email' element={<AdminSendEmail />} />
         <Route path='/admin/bachelor/student_situation' element={<SituatieStudenti />} />
         <Route path='/admin/bachelor/coordinator_situation' element={<SituatieCoordonatori />} />
