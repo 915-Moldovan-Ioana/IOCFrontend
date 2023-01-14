@@ -12,7 +12,8 @@ import Modal from '@mui/material/Modal';
 import { TableContainer } from '@mui/material';
 
 function AdminIPostInfo() {
-    const paperStyle = { padding: '50px 20px', margin: "20px auto" }
+    const paperStyle = { padding: '50px 20px', margin: "20px 250px auto" }
+    const buttonStyle = { padding: '15px 15px', margin: "40px 40px auto" }
     const modalStyle = {
         position: 'absolute',
         top: '50%',
@@ -31,8 +32,11 @@ function AdminIPostInfo() {
     const [created, setCreated] = useState('');
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
+    const handleClose = () => {
+        setOpen(false);
+        resetInputField();
+    }
+    
     useEffect(() => {
         fetch(`http://localhost:8080/admins/announcements?type=stagiu`, {
             method: 'GET',
@@ -45,6 +49,10 @@ function AdminIPostInfo() {
             .then(result => setNews(result))
             .catch(err => console.log(err))
     }, []);
+
+    const resetInputField = () => {
+        setMessage("");
+    };
 
     const handleClick = (e) => {
         e.preventDefault()
@@ -66,6 +74,7 @@ function AdminIPostInfo() {
             console.log("New info added")
             handleClose()
         })
+        resetInputField();
     }
 
     return (
@@ -86,13 +95,13 @@ function AdminIPostInfo() {
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 
                         >
-                            <TableCell align="left">{row.created}</TableCell>
+                            <TableCell align="left">{row.created ? row.created : 'now'}</TableCell>
                             <TableCell align="left">{row.message}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
             </Table></TableContainer>
-            <Button variant="contained" color="inherit" sx={{ color: 'white', backgroundColor: 'rgba(15, 12, 110, 1)', borderColor: 'rgba(15, 12, 110, 1)' }} onClick={handleOpen}>Posteaza</Button>
+            <Button style={buttonStyle} variant="contained" color="inherit" sx={{ color: 'white', backgroundColor: 'rgba(15, 12, 110, 1)', borderColor: 'rgba(15, 12, 110, 1)' }} onClick={handleOpen}>Posteaza</Button>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -107,11 +116,16 @@ function AdminIPostInfo() {
                     justifyContent="flex-end"
                 >
                     <h1 style={{ color: "black", }}>Posteaza o informatie noua</h1>
-                    <TextField id="outlined-basic" label="Informatie" variant="outlined" fullWidth margin="normal"
+                    <TextField id="outlined-basic" maxLength={250} label="Informatie" variant="outlined" fullWidth margin="normal"
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
+                        inputProps={{
+                            maxLength: 250,
+                        }}
                     />
-                    <Button variant="contained" color="inherit" sx={{ color: 'white', backgroundColor: 'rgba(15, 12, 110, 1)', borderColor: 'rgba(15, 12, 110, 1)' }} onClick={handleClick}>Posteaza</Button>
+                    <div>Introduceti maxim 250 de caractere!</div>
+                    <Button style={buttonStyle} variant="contained" color="inherit" sx={{ color: 'white', backgroundColor: 'rgba(15, 12, 110, 1)', borderColor: 'rgba(15, 12, 110, 1)' }} onClick={handleClick} disabled={!message}>Posteaza</Button>
+                    <Button style={buttonStyle} variant="contained" color="inherit" sx={{ color: 'white', backgroundColor: 'rgba(15, 12, 110, 1)', borderColor: 'rgba(15, 12, 110, 1)' }} onClick={handleClose}>Renunta</Button>
                 </Box>
             </Modal>
         </Paper>
