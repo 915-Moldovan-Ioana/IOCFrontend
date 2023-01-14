@@ -40,7 +40,7 @@ function CoordinatorRequests() {
     const handleButtonClick = student => {
         axios.post('http://localhost:8080/coordonator/accept', { studentId: student.id,teacherId:id })
             .then(() => {
-                window.location.reload();
+                //window.location.reload();
             })
             .catch(error => {
                 console.error(error);
