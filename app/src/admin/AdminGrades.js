@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Modal from '@mui/material/Modal';
 import { TableContainer } from '@mui/material';
 
 function AdminGrades() {
 
     const paperStyle = { padding: '50px 20px', margin: "20px 250px auto" }
-
-    const i = 2
     const [grades, setGrades] = React.useState('');
 
     useEffect(() => {
