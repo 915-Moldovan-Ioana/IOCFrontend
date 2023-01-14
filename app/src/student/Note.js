@@ -9,6 +9,7 @@ import { TableContainer } from "@mui/material";
 import Sidebar from "../sidebar/Sidebar";
 import IdContext from "../login/IdContext";
 import axios from "axios";
+import { RiContactsBookLine } from "react-icons/ri";
 
 function Note() {
     const paperStyle = { padding: "50px 20px", margin: "20px auto" };
@@ -17,7 +18,7 @@ function Note() {
     const [info, setInfo] = useState(null);
     async function getInfo() {
         const response = await axios.get(
-            `http://localhost:8080/student/${id}/stage-details`
+            `http://localhost:8080/student/${id}/criteria`
         );
         const responseData = await response.data;
         setInfo(responseData);
@@ -30,49 +31,61 @@ function Note() {
     }, []);
 
     // TODO: fetch news
+    if (info != null) {
 
+        if (info.reTakeGrade == null) {
+            return (
+                <>
+                    <h1 align="center" style={{ color: "black" }}>
+                        {" "}
+                        Criteria:
+                    </h1>
+                    <h3 align="center" style={{ color: "black" }}>
+                        {info.evaluationCriteria}
+                    </h3>
+
+                    <h1 align="center" style={{ color: "black" }}>
+                        {" "}
+                        Grade:
+                    </h1>
+                    <h2 align="center" style={{ color: "black" }}>
+                        {info.normalGrade}
+                    </h2>
+                </>
+            );
+        } else {
+            return (
+
+                <>
+                    <h1 align="center" style={{ color: "black" }}>
+                        {" "}
+                        Criteria:
+                    </h1>
+                    <h3 align="center" style={{ color: "black" }}>
+                        {info.evaluationCriteria}
+                    </h3>
+
+                    <h1 align="center" style={{ color: "black" }}>
+                        {" "}
+                        Grade:
+                    </h1>
+                    <h2 align="center" style={{ color: "black" }}>
+                        {info.normalGrade}
+                    </h2>
+
+                    <h1 align="center" style={{ color: "black" }}>
+                        {" "}
+                        Re Take Grade:
+                    </h1>
+                    <h2 align="center" style={{ color: "black" }}>
+                        {info.reTakeGrade}
+                    </h2>
+                </>
+            );
+        }
+    }
     return (
         <>
-            <Paper elevation={3} style={paperStyle}>
-                <h1 align="center" style={{ color: "black" }}>
-                    {" "}
-                    Task-uri & deadline-uri
-                </h1>
-                <TableContainer sx={{ height: 600 }}>
-                    <Table
-                        sx={{ minWidth: 650, maxHeight: "max-content" }}
-                        aria-label="simple table"
-                    >
-                        <TableHead>
-                            <TableRow>
-                                <TableCell align="center" sx={{ color: "white" }}>
-                                    <b>Mesaj</b>
-                                </TableCell>
-                                <TableCell align="center" sx={{ color: "white" }}>
-                                    <b>Deadline</b>
-                                </TableCell>
-                                <TableCell align="center" sx={{ color: "white" }}>
-                                    <b>Nota primita:</b>
-                                </TableCell>
-                            </TableRow>
-                        </TableHead>
-                        {info && (
-                            <TableBody>
-                                {Array.from(info.tasks).map((row) => (
-                                    <TableRow
-                                        key={row.id}
-                                        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                                    >
-                                        <TableCell align="center">{row.message}</TableCell>
-                                        <TableCell align="center">{row.deadline}</TableCell>
-                                        <TableCell align="center">{row.grade?row.grade:"---"}</TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        )}
-                    </Table>
-                </TableContainer>
-            </Paper>
         </>
     );
 }
