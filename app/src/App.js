@@ -27,6 +27,7 @@ import Note from "./student/Note";
 import {AdminSendEmail} from "./admin/AdminSendEmail";
 import TasksCompleted from "./coordinator/TasksCompleted";
 import AdminGrades from './admin/AdminGrades';
+import AdminAddAccountsWithFile from "./admin/AdminAddAccountsWithFile";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -47,6 +48,7 @@ function App() {
       <Sidebar />
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/admin/accounts/add' element={<AdminAddAccountsWithFile />} />
         <Route path='/admin/bachelor/post' element={<AdminBPostInfo />} />
         <Route path='/admin/internship/grades' element={<AdminGrades />} />
         <Route path='/admin/bachelor/email' element={<AdminSendEmail />} />
