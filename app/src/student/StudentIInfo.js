@@ -15,6 +15,8 @@ function StudentIInfo() {
   const idctx = useContext(IdContext);
   const id = idctx.idLogin;
   const [info, setInfo] = useState(null);
+  const [message, setMessage] = useState(null);
+
   async function getInfo() {
     const response = await axios.get(
       `http://localhost:8080/student/${id}/stage-details`
@@ -24,15 +26,64 @@ function StudentIInfo() {
     console.log("response data ", responseData);
     console.log(info);
   }
+
+  async function getMessages() {
+    const response = await axios.get(
+      `http://localhost:8080/student/announcements-admin`
+    );
+    const responseData = await response.data;
+    setMessage(responseData);
+    console.log("MESSAGE ", responseData);
+    console.log(message);
+  }
   useEffect(() => {
     getInfo();
+    getMessages();
     console.log(info);
   }, []);
 
-  // TODO: fetch news
-
   return (
     <>
+      <Paper elevation={3} style={paperStyle}>
+        <h1 align="center" style={{ color: "black" }}>
+          Anunturi generale
+        </h1>
+        <TableContainer sx={{ height: 300 }}>
+          <Table
+            sx={{ minWidth: 650, maxHeight: "max-content" }}
+            aria-label="simple table"
+          >
+            <TableHead>
+              <TableRow>
+                <TableCell align="center" sx={{ color: "white" }}>
+                  <b>Mesaj</b>
+                </TableCell>
+                <TableCell
+                  align="center"
+                  sx={{ color: "white", width: "200px" }}
+                >
+                  <b>Data</b>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            {message && (
+              <TableBody>
+                {Array.from(message).map((row) => (
+                  <TableRow
+                    key={row.id}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell align="center">{row.message}</TableCell>
+                    <TableCell align="center">
+                      {new Date(row.created).toLocaleDateString()}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            )}
+          </Table>
+        </TableContainer>
+      </Paper>
       <Paper elevation={3} style={paperStyle}>
         <h1 align="center" style={{ color: "black" }}>
           Informatii
@@ -112,8 +163,7 @@ function StudentIInfo() {
 
       <Paper elevation={3} style={paperStyle}>
         <h1 align="center" style={{ color: "black" }}>
-          {" "}
-          Task-uri & deadline-uri
+          Teme & termene limita
         </h1>
         <TableContainer sx={{ height: 600 }}>
           <Table
@@ -123,10 +173,10 @@ function StudentIInfo() {
             <TableHead>
               <TableRow>
                 <TableCell align="center" sx={{ color: "white" }}>
-                  <b>Mesaj</b>
+                  <b>Tema</b>
                 </TableCell>
                 <TableCell align="center" sx={{ color: "white" }}>
-                  <b>Deadline</b>
+                  <b>Termen limita</b>
                 </TableCell>
               </TableRow>
             </TableHead>

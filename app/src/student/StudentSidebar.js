@@ -32,7 +32,7 @@ const StudentSidebar = [
     iconOpened: <RiIcons.RiArrowUpFill />,
     subNav: [
       {
-        title: "Vizualizare informatii generale",
+        title: "Informatii generale",
         path: "/student/internship/info",
       },
       {
