@@ -10,10 +10,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Modal from '@mui/material/Modal';
 import { TableContainer } from '@mui/material';
+import axios from 'axios';
 
 function AlocareStudenti() {
 
-    const paperStyle = { padding: '50px 20px', margin: "20px auto" }
+    const paperStyle = { padding: '50px 20px', margin: "20px 250px auto" }
     const modalStyle = {
         position: 'absolute',
         top: '50%',
@@ -25,56 +26,58 @@ function AlocareStudenti() {
         p: 4,
     };
 
-    const [coords, setCoords] = useState([
-        { id: 1, name: 'Profesorul X' },
-        { id: 2, name: 'Razvan Invatatul' },
-        { id: 3, name: 'Profesorul Prof' }
-    ])
+    const [coords, setCoords] = useState([]);
+    const [students, setStudents] = useState([]);
 
-    const [news, setNews] = useState([
-        { id: 1, name: 'Pop Maria' },
-        { id: 2, name: 'Pop Emanuel' },
-        { id: 3, name: 'Rares Marc' },
-        { id: 4, name: 'Dan Andrei' }
-    ])
-    const [name, setName] = useState('');
-    const [coord, setCoord] = useState('-');
-    const [noAloc, setNoAloc] = useState(0);
-    const [noFree, setNoFree] = useState(0);
-    const [status, setStatus] = useState('');
+    const [currId, setCurrId] = useState(0);
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
+    const handleOpen = (id) => {
+        setOpen(true);
+        setCurrId(id);
+    }
     const handleClose = () => setOpen(false);
 
-    // useEffect(() => {
-    //     fetch(`http://localhost:8080/admins/announcements?type=licenta`, {
-    //         method: 'GET',
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Access-Control-Allow-Origin": "*"
-    //         }
-    //     })
-    //         .then(res => res.json())
-    //         .then(result => setNews(result))
-    //         .catch(err => console.log(err))
-    // }, []);
+    useEffect(() => {
+        fetch(`http://localhost:8080/student/without-coordinator`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            }
+        })
+            .then(res => res.json())
+            .then(result => setStudents(result))
+            .then(console.log(students))
+            .catch(err => console.log(err))
+    }, []);
 
-    // const handleClick = (e) => {
-    //     e.preventDefault()
-    //     const newInfo = { message: message, created: created }
-    //     console.log(newInfo)
-    //     fetch("http://localhost:8080/admins/announcements/licenta", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Access-Control-Allow-Origin": "*"
-    //         },
-    //         body: JSON.stringify(newInfo)
-    //     }).then(() => {
-    //         console.log("New info added")
-    //         handleClose()
-    //     })
-    // }
+    useEffect(() => {
+        fetch(`http://localhost:8080/coordonator`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            }
+        })
+            .then(res => res.json())
+            .then(result => setCoords(result))
+            .then(console.log(coords))
+            .catch(err => console.log(err))
+    }, []);
+
+    const handleSetCoord = (teacherId) => {
+        console.log(currId)
+        console.log(teacherId)
+        axios.post(`http://localhost:8080/coordonator/receive-student/${currId}/${teacherId}`)
+            .then(() => {
+                console.log("Student added")
+                setOpen(false)
+                window.alert('Student alocat!')
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
 
     return (
         <Paper elevation={3} style={paperStyle}>
@@ -83,21 +86,19 @@ function AlocareStudenti() {
                 <TableHead>
                     <TableRow>
                         <TableCell sx={{ color: 'white' }}><b>Nume student</b></TableCell>
-                        <TableCell sx={{ color: 'white' }}><b>Nume coordonator</b></TableCell>
                         <TableCell sx={{ color: 'white' }} align="left"><b> </b></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {Array.from(news).map((row) => (
+                    {Array.from(students).map((row) => (
                         <TableRow
                             key={row.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 
                         >
-                            <TableCell align="left">{row.name}</TableCell>
-                            <TableCell align="left">{row.coord}</TableCell>
+                            <TableCell align="left">{row.user.lastName + " " + row.user.firstName}</TableCell>
                             <TableCell align='right'>
-                                <Button variant="contained" color="inherit" onClick={handleOpen}>Alege coordonator</Button>
+                                <Button variant="contained" color="inherit" onClick={() => handleOpen(row.user.id)}>Alege coordonator</Button>
                             </TableCell>
                         </TableRow>
                     ))}
@@ -124,9 +125,9 @@ function AlocareStudenti() {
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 
                                 >
-                                    <TableCell align="left">{row2.name}</TableCell>
+                                    <TableCell align="left">{row2.user.lastName + " " + row2.user.firstName}</TableCell>
                                     <TableCell align='right'>
-                                        <Button variant="contained" color="inherit" onClick={() => setCoord(row2.name)}>Alege</Button>
+                                        <Button variant="contained" color="inherit" onClick={() => handleSetCoord(row2.user.id)}>Alege</Button>
                                     </TableCell>
                                 </TableRow>
                             ))}
