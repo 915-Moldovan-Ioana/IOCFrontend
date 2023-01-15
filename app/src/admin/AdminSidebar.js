@@ -4,6 +4,13 @@ import * as RiIcons from "react-icons/ri";
 
 const AdminSidebar = [
   {
+    title: "Adaugare conturi",
+    path: "/admin/accounts/add",
+    className: "nav-text",
+    iconClosed: <RiIcons.RiArrowDownFill/>,
+    iconOpened: <RiIcons.RiArrowUpFill/>
+  },
+  {
     title: "Coordonare lucrare",
     path: "/admin/bachelor",
     className: "nav-text",
