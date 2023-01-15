@@ -188,7 +188,9 @@ function StudentIInfo() {
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell align="center">{row.message}</TableCell>
-                    <TableCell align="center">{row.deadline}</TableCell>
+                    <TableCell align="center">
+                      {new Date(row.deadline).toLocaleDateString()}
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
