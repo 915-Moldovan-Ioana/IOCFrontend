@@ -56,7 +56,7 @@ const AdminSidebar = [
         path: "/admin/internship/situation",
       },
       {
-        title: "Editeaza criterii practica-WIP",
+        title: "Editeaza criterii practica",
         path: "/admin/internship/edit",
       },
       {
