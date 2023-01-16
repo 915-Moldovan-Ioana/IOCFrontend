@@ -5,8 +5,7 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { TableContainer } from "@mui/material";
-import Sidebar from "../sidebar/Sidebar";
+import {Button, TableContainer} from "@mui/material";
 import IdContext from "../login/IdContext";
 import axios from "axios";
 
@@ -16,6 +15,14 @@ function StudentIInfo() {
   const id = idctx.idLogin;
   const [info, setInfo] = useState(null);
   const [message, setMessage] = useState(null);
+  const [task,setTask] = useState();
+  const [selectedFiles,setSelectedFiles] = useState([])
+
+  useEffect(() => {
+    getInfo();
+    getMessages();
+    console.log(info);
+  }, []);
 
   async function getInfo() {
     const response = await axios.get(
@@ -36,11 +43,28 @@ function StudentIInfo() {
     console.log("MESSAGE ", responseData);
     console.log(message);
   }
-  useEffect(() => {
-    getInfo();
-    getMessages();
-    console.log(info);
-  }, []);
+  const setFiles = (file,taskId) => {
+    if(info.tasks !== undefined){
+      const task = info.tasks.filter(task => task.id === taskId)[0];
+      task.documentUrls.push(file[0].name);
+      setTask(task);
+      selectedFiles.push(file[0].name);
+    }
+  }
+
+  const handleUploadClick = () => {
+    axios.post(`http://localhost:8080/coordonator/assignment`,task,{
+      'headers': {
+        'Content-Type': 'application/json',
+      }
+    })
+        .then(() => {
+          window.alert('Files uploaded!')
+        })
+        .catch(error => {
+          console.log(error);
+        });
+  };
 
   return (
     <>
@@ -178,6 +202,9 @@ function StudentIInfo() {
                 <TableCell align="center" sx={{ color: "white" }}>
                   <b>Termen limita</b>
                 </TableCell>
+                <TableCell align="center" sx={{ color: "white" }}>
+                  <b>Incarca document</b>
+                </TableCell>
               </TableRow>
             </TableHead>
             {info && (
@@ -190,6 +217,23 @@ function StudentIInfo() {
                     <TableCell align="center">{row.message}</TableCell>
                     <TableCell align="center">
                       {new Date(row.deadline).toLocaleDateString()}
+                    </TableCell>
+                    <TableCell align="center">
+                        <div>
+                          <input style={{width:400,height:"unset"}} type="file" className="form-control" multiple onChange={
+                            (e) => {
+                            setFiles(e.target.files,row.id);
+                            }}
+                          />
+                          {(task !== undefined && task.id === row.id) &&  <ul style={{width:400,textAlign:"center",marginLeft:150}}>
+                            {selectedFiles.map((file) => (
+                                <li style={{width:150}} key={Math.random()}>
+                                  {file}
+                                </li>
+                            ))}
+                          </ul>}
+                          <Button onClick={handleUploadClick} sx={{ color: 'white', backgroundColor: 'rgba(15, 12, 110, 1)', borderColor: 'rgba(15, 12, 110, 1)' }}>Upload</Button>
+                        </div>
                     </TableCell>
                   </TableRow>
                 ))}
