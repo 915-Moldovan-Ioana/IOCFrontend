@@ -29,7 +29,6 @@ function CLPage() {
     const response = await axios.get(`http://localhost:8080/student/${id}/is-coordinated`)
     const responseData = await response.data;
     setIsCoordinated(responseData);
-    console.log(responseData);
   }
 
   const [teachers, setTeachers] = useState([]);
