@@ -36,10 +36,6 @@ const StudentSidebar = [
         path: "/student/internship/info",
       },
       {
-        title: "Incarca documente",
-        path: "/student/internship/doc",
-      },
-      {
         title: "Evaluare practica",
         path: "/student/internship/evaluation",
       },
