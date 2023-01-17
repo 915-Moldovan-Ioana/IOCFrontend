@@ -45,7 +45,8 @@ function SituatieStudenti() {
 
                         >
                             <TableCell align="left">{row.user.lastName + " " + row.user.firstName}</TableCell>
-                            <TableCell align="left">{row.coordinator != null ? row.coordinator.lastName + " " + row.coordinator.firstName : "Studentul nu are coordonator"}</TableCell>
+                            <TableCell align="right">{row.coordinator != null ? row.coordinator.lastName + " " + row.coordinator.firstName : "Studentul nu are coordonator"}</TableCell>
+                            <TableCell align='left'></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
