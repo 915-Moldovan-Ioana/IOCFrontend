@@ -96,7 +96,7 @@ function AdminBPostInfo() {
 
                         >
                             <TableCell align="left">{Moment(row.created).format('MM/DD/YYYY') ? Moment(row.created).format('MM/DD/YYYY') : 'now'}</TableCell>
-                            <TableCell align="left">{row.message}</TableCell>
+                            <TableCell align="left">{row.message != null ? row.message : "Nu exista mesaj"}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
