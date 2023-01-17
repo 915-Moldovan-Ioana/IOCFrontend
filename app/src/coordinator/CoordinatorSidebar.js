@@ -21,8 +21,8 @@ const CoordinatorSidebar = [
         path: "/coordinator/bachelor/students",
       },
       {
-        title: "Chat-WIP",
-        path: "/coordinator/bachelor/chat",
+        title: "Chat",
+        path: "/coordinator/bachelor/contacts",
       },
     ],
   },
@@ -48,11 +48,7 @@ const CoordinatorSidebar = [
       {
         title: "Evaluare studenti",
         path: "/coordinator/internship/evaluation",
-      },
-      {
-        title: "Chat-WIP",
-        path: "/coordinator/internship/chat",
-      },
+      }
     ],
   },
 ];

@@ -21,7 +21,6 @@ import axios from "axios";
 import IdContext from "../../login/IdContext";
 
 const Chat = () => {
-  const bottomRef = useRef(null);
   const idctx = useContext(IdContext);
   const id = idctx.idLogin;
   const [chatMessages, setChatMessages] = useState([]);
@@ -78,8 +77,9 @@ const Chat = () => {
             <Divider />
             <Grid container spacing={4} alignItems="center">
               <Grid id="chat-window" xs={12} item>
-                <List id="chat-window-messages">{listChatMessages}</List>
-                <div ref={bottomRef}></div>
+                <List id="chat-window-messages">
+                  {listChatMessages} 
+                </List>
               </Grid>
               <Grid item width={"90%"}>
                 <FormControl fullWidth>
