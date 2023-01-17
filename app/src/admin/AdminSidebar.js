@@ -26,20 +26,12 @@ const AdminSidebar = [
         path: "/admin/bachelor/student_situation",
       },
       {
-        title: "Situatie coordonatori",
-        path: "/admin/bachelor/coordinator_situation",
-      },
-      {
         title: "Chat -WIP",
         path: "/admin/bachelor/chat",
       },
       {
-        title: "Trimitere email-WIP",
+        title: "Trimitere email",
         path: "/admin/bachelor/email",
-      },
-      {
-        title: "Acorduri de licenta-WIP",
-        path: "/admin/bachelor/acc_bachelor",
       },
       {
         title: "Alocare studenti",
@@ -59,15 +51,11 @@ const AdminSidebar = [
         path: "/admin/internship/post",
       },
       {
-        title: "Situatie studenti",
-        path: "/admin/internship/situation",
-      },
-      {
         title: "Editeaza criterii practica",
         path: "/admin/internship/edit",
       },
       {
-        title: "Vizualizare note-WIP",
+        title: "Vizualizare note",
         path: "/admin/internship/grades",
       },
       {
