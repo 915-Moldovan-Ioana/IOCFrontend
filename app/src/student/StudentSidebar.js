@@ -19,7 +19,7 @@ const StudentSidebar = [
         path: "/student/bachelor/status",
       },
       {
-        title: "Chat",
+        title: "Chat coordonator",
         path: "/student/bachelor/chat",
       },
     ],
@@ -40,8 +40,8 @@ const StudentSidebar = [
         path: "/student/internship/evaluation",
       },
       {
-        title: "Chat-WIP",
-        path: "/student/internship/chat",
+        title: "Chat admin",
+        path: "/student/internship/adminchat",
       },
     ],
   },

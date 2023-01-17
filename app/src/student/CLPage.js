@@ -15,48 +15,31 @@ import axios from "axios";
 function CLPage() {
   const paperStyle = { padding: "50px 20px", margin: "20px auto" };
   const [modalTeacherId,setTeacherId] = useState(0)
+  const [isCoordinated, setIsCoordinated] = useState(false);
   const idctx = useContext(IdContext);
   const id = idctx.idLogin;
+
   async function getTeachers() {
     const response = await axios.get(`http://localhost:8080/coordonator`);
     const responseData = await response.data;
     setTeachers(responseData);
   }
+
+  const checkIfStudentIsCoordinated = async () => {
+    const response = await axios.get(`http://localhost:8080/student/${id}/is-coordinated`)
+    const responseData = await response.data;
+    setIsCoordinated(responseData);
+    console.log(responseData);
+  }
+
   const [teachers, setTeachers] = useState([]);
   useEffect(() => {
+    checkIfStudentIsCoordinated();
     getTeachers();
   }, []);
 
   // TODO: fetch news
-  const [news, setNews] = useState([
-    {
-      id: 1,
-      nume: "nume1",
-      prenume: "12.12.2022",
-      gradAcademic: "lalalala",
-      temeInteres: "asbc",
-      adresaEmail: "sjedfh",
-      numarLocuri: "ajd",
-    },
-    {
-      id: 2,
-      nume: "nume2",
-      prenume: "12.12.2022",
-      gradAcademic: "lalalala",
-      temeInteres: "asbc",
-      adresaEmail: "sjedfh",
-      numarLocuri: "ajd",
-    },
-    {
-      id: 3,
-      nume: "nume3",
-      prenume: "12.12.2022",
-      gradAcademic: "lalalala",
-      temeInteres: "asbc",
-      adresaEmail: "sjedfh",
-      numarLocuri: "ajd",
-    },
-  ]);
+
   const ref = useRef();
   const [open, setOpen] = React.useState(false);
   const handleOpen = (id) => {
@@ -121,9 +104,11 @@ function CLPage() {
                 <TableCell align="center" sx={{ color: "white" }}>
                   <b>Nr locuri ocupate/ Total nr locuri</b>
                 </TableCell>
+                { !isCoordinated &&
                 <TableCell align="center" sx={{ color: "white" }}>
                   <b>Trimite cerere</b>
                 </TableCell>
+                }
               </TableRow>
             </TableHead>
             <TableBody>
@@ -141,7 +126,9 @@ function CLPage() {
                   <TableCell align="center">
                     {row.locuri - row.locuriLibere}/{row.locuri}
                   </TableCell>
+                  { !isCoordinated &&
                   <TableCell align="center"><Button variant="contained"  onClick={()=>handleOpen(row.user.id)} className=".MuiButton-sizeLarge" size="large" sx={{ color: "blue", backgroundColor : "white", fontSize: "x-large", fontWeight: "900"}}>+</Button></TableCell>
+                  }
                   <Modal
                     open={open}
                     onClose={handleClose}
