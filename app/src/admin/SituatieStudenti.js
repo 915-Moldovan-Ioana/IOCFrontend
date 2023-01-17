@@ -7,6 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { TableContainer } from '@mui/material';
 import axios from 'axios';
+import studentIInfo from "../student/StudentIInfo";
 
 function SituatieStudenti() {
 
@@ -16,7 +17,8 @@ function SituatieStudenti() {
     useEffect(() => {
         axios.get(`http://localhost:8080/admins/students/all`)
             .then(response => {
-                setSituations(response.data);
+                console.log(response)
+                setSituations(response.data.students);
             })
             .then(console.log(situations))
             .catch(error => {
