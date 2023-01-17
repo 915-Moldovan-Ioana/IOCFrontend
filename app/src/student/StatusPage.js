@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -7,9 +7,31 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { TableContainer } from "@mui/material";
 import Sidebar from "../sidebar/Sidebar";
+import IdContext from "../login/IdContext";
 import axios from "axios";
+
 function StatusPage() {
   const paperStyle = { padding: "50px 20px", margin: "20px auto" };
+
+  const idctx = useContext(IdContext);
+  const id = idctx.idLogin;
+  const [cerere, setCerere] = useState(null);
+
+
+  useEffect(() => {
+    getCerere();
+    console.log(cerere);
+  }, []);
+
+  async function getCerere() {
+    const response = await axios.get(
+      `http://localhost:8080/student/status-cereri/${id}`
+    );
+    const responseData = await response.data;
+    setCerere(responseData);
+    console.log("response data ", responseData);
+    console.log(cerere);
+  }
 
   return (
     <>
@@ -32,26 +54,19 @@ function StatusPage() {
                 </TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
-              <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell align="center">Razvan Doica</TableCell>
-                <TableCell align="center" sx={{color: "red"}}>REJECTED</TableCell>
-              </TableRow>
-              <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell align="center">Alex Gajia</TableCell>
-                <TableCell align="center" sx={{color: "green"}}>APPROVED</TableCell>
-              </TableRow>
-              <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell align="center">Daniel Dragoi</TableCell>
-                <TableCell align="center" sx={{color: "red"}}>REJECTED</TableCell>
-              </TableRow>
-            </TableBody>
+            {cerere && (
+              <TableBody>
+                {Array.from(cerere).map((row) => (
+                  <TableRow
+                    key={row.id}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell align="center">{row.teacherName}</TableCell>
+                    <TableCell align="center">{row.statusCerereType}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            )}
           </Table>
         </TableContainer>
       </Paper>
