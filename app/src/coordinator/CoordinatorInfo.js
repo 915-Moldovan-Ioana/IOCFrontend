@@ -13,16 +13,24 @@ function CoordinatorInfo() {
   const paperStyle = { padding: "50px 20px", margin: "20px auto" };
   const idctx = useContext(IdContext);
   const id = idctx.idLogin;
-  const [info, setInfo] = useState(null);
   const [message, setMessage] = useState(null);
+  const [criteria,setCriteria]=useState(null);
 
   useEffect(() => {
     getMessages();
-
+    getInfo2();
   }, []);
 
 
-  
+  async function getInfo2() {
+    const response = await axios.get(
+        `http://localhost:8080/admins/global-details`
+    );
+    const responseData = await response.data.evaluationCriteria;
+    setCriteria(responseData);
+    console.log("response data ", responseData);
+    console.log(criteria);
+}
 
   async function getMessages() {
     const response = await axios.get(
@@ -39,6 +47,12 @@ function CoordinatorInfo() {
   return (
     <>
       <Paper elevation={3} style={paperStyle}>
+      <h1 align="center" style={{ color: "black" }}>
+          Criterii
+        </h1>
+        <h2 align="center" style={{ color: "black" }}>
+                        {criteria}
+        </h2>
         <h1 align="center" style={{ color: "black" }}>
           Anunturi generale
         </h1>
