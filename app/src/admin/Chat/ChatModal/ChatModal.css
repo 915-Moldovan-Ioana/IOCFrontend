@@ -1,0 +1,19 @@
+#chat-container{
+    margin-top: 3rem;
+}
+
+#chat-window {
+    height: 20rem;
+}
+
+#chat-window-messages {
+    height: 18rem;
+    overflow: auto;
+}
+
+#center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+  }
+

@@ -26,7 +26,7 @@ const AdminSidebar = [
         path: "/admin/bachelor/student_situation",
       },
       {
-        title: "Chat -WIP",
+        title: "Chat",
         path: "/admin/bachelor/chat",
       },
       {

@@ -29,6 +29,8 @@ import AdminEditPage from "./admin/AdminEditPage";
 import AdminGrades from "./admin/AdminGrades";
 import AdminAddAccountsWithFile from "./admin/AdminAddAccountsWithFile";
 import AdminChat from "./student/chat/AdminChat";
+import ContactsList from "./admin/Chat/ContactsList";
+import CoordonatorAdminChat from "./coordinator/Chat/CoordonatorAdminChat"
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -88,7 +90,9 @@ function App() {
           <Route path="/student/bachelor" element={<Coordonare />} />
           <Route path="/student/internship/evaluation" element={<Note />} />
           <Route path="/admin/internship/edit" element={<AdminEditPage />} />
+          <Route path="/admin/bachelor/chat" element={<ContactsList />} />
           <Route path="/student/internship/adminchat" element={<AdminChat />} />
+          <Route path="/coordinator/adminchat" element={<CoordonatorAdminChat />} />
           /student/internship/info /cordonator
           <Route
             path="/coordinator/internship/docs"
