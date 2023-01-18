@@ -10,6 +10,7 @@ function CoordinatorRequests() {
     const id=idctx.idLogin;
     console.log(id);
     const ip="http://127.0.0.1:8887/";
+
     useEffect(() => {
         axios.get(`http://localhost:8080/coordonator/students/${id}`)
             .then(response => {
@@ -40,9 +41,6 @@ function CoordinatorRequests() {
     const handleButtonClick = student => {
         axios.post('http://localhost:8080/coordonator/accept', { studentId: student.id,teacherId:id })
             .then(() => {
-                window.location.reload();
-                idctx.setIdLogin(id.id);
-                idctx.setRole("coordonator");
             })
             .catch(error => {
                 console.error(error);

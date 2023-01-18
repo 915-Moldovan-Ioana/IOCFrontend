@@ -13,6 +13,7 @@ function StudentIInfo() {
   const paperStyle = { padding: "50px 20px", margin: "20px auto" };
   const idctx = useContext(IdContext);
   const id = idctx.idLogin;
+  const [criteria,setCriteria]=useState(null);
   const [info, setInfo] = useState(null);
   const [message, setMessage] = useState(null);
   const [task,setTask] = useState();

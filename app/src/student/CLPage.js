@@ -48,8 +48,9 @@ function CLPage() {
   const handleClose = () => setOpen(false);
   const handleClick = (e) => {
       e.preventDefault()
-
-      axios.post('http://localhost:8080/student/request', { id:{studentId: id,teacherId: modalTeacherId },documentUrl: ref.current.value})
+      const split=ref.current.value.toString()
+      var split2=split.split('\\');
+      axios.post('http://localhost:8080/student/request', { id:{studentId: id,teacherId: modalTeacherId },documentUrl: split2[2]})
             .then(() => {
 
             })

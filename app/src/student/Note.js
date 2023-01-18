@@ -16,6 +16,7 @@ function Note() {
     const idctx = useContext(IdContext);
     const id = idctx.idLogin;
     const [info, setInfo] = useState(null);
+    const [criteria,setCriteria]=useState(null);
     async function getInfo() {
         const response = await axios.get(
             `http://localhost:8080/student/${id}/criteria`
@@ -25,8 +26,19 @@ function Note() {
         console.log("response data ", responseData);
         console.log(info);
     }
+
+    async function getInfo2() {
+        const response = await axios.get(
+            `http://localhost:8080/admins/global-details`
+        );
+        const responseData = await response.data.evaluationCriteria;
+        setCriteria(responseData);
+        console.log("response data ", responseData);
+        console.log(info);
+    }
     useEffect(() => {
         getInfo();
+        getInfo2();
         console.log(info);
     }, []);
 
@@ -41,7 +53,7 @@ function Note() {
                         Criteria:
                     </h1>
                     <h3 align="center" style={{ color: "black" }}>
-                        {info.evaluationCriteria}
+                        {criteria}
                     </h3>
 
                     <h1 align="center" style={{ color: "black" }}>
@@ -62,7 +74,7 @@ function Note() {
                         Criteria:
                     </h1>
                     <h3 align="center" style={{ color: "black" }}>
-                        {info.evaluationCriteria}
+                        {criteria}
                     </h3>
 
                     <h1 align="center" style={{ color: "black" }}>
