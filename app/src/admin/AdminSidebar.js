@@ -58,10 +58,6 @@ const AdminSidebar = [
         title: "Vizualizare note",
         path: "/admin/internship/grades",
       },
-      {
-        title: "Gestionare conturi-WIP",
-        path: "/admin/internship/accounts",
-      },
     ],
   },
 ];
