@@ -34,7 +34,7 @@ const CoordinatorSidebar = [
     iconOpened: <RiIcons.RiArrowUpFill />,
     subNav: [
       {
-        title: "Vizualizare informatii-WIP",
+        title: "Vizualizare informatii",
         path: "/coordinator/internship/info",
       },
       {
